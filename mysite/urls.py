@@ -1,9 +1,9 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
-from polls.views import *
+from mysite.polls.views import *
 from tastypie.api import Api
-from polls.api import *
+from mysite.polls.api import *
 
 admin.autodiscover()
 

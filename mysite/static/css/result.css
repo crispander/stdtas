@@ -1,0 +1,25 @@
+/*.block_std{
+	display:block;
+	-moz-box-shadow:inset 0px 2px 0px 0px #bcc0c2;
+	-webkit-box-shadow:inset 0px 2px 0px 0px #bcc0c2;
+	box-shadow:inset 0px 2px 0px 0px #bcc0c2;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d6e1e8), color-stop(1, #b6b7b8) );
+	background:-moz-linear-gradient( center top, #d6e1e8 5%, #b6b7b8 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d6e1e8', endColorstr='#b6b7b8');
+	background-color:#d6e1e8;
+	border:1px solid #adadad;
+	display:block;
+	color:#161717;
+	font-family:calibri, verdana, arial;
+	font-size:15px;
+	font-weight:bold;
+	width:90%;
+	padding:7px;
+	text-decoration:none;
+}
+
+.block_std small{
+	float:right;
+	color:gray;
+}
+*/

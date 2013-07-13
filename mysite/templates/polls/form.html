@@ -1,0 +1,591 @@
+<html>
+<head>
+	<title>Generador de encuestas en linea</title>
+	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+	<link href="{{ STATIC_URL }}css/form.css" type="text/css" rel="stylesheet">
+	
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/start/jquery-ui.css" />
+	<link href="{{ STATIC_URL }}css/color/colorpicker.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/color/colorpicker.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/form.js"></script>
+	
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<style id="degrade"></style>
+	<style id="padding_options"></style>
+	<script>
+	var options_array = [];
+	var type_poll = "radio";
+	$(document).ready(function(){
+	$("#degrade").html(".block_std-options_cris{	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d6e1e8), color-stop(1, #b6b7b8) );background:-moz-linear-gradient( center top, #d6e1e8 5%, #b6b7b8 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d6e1e8', endColorstr='#b6b7b8');background-color:#d6e1e8;border:1px solid #adadad;display:block;}");
+	
+		//fondo
+		$("#fondo").ColorPicker({	
+			onSubmit: function(hsb, hex, rgb, el) {
+			//$("#fondo_val").val(hex);
+			$("#fondo").css("background-color", "#"  + hex);
+			//form
+			$("#fondo_i_hidden").attr("value", "#"  + hex);
+			$("#fondo").ColorPickerHide();
+			
+			$("#preview").css("background-color", "#"  + hex);
+			
+			},
+		});
+		
+		//borde
+		$("#borde").ColorPicker({	
+			onSubmit: function(hsb, hex, rgb, el) {
+			//$("#fondo_val").val(hex);
+			$("#borde").css("background-color", "#"  + hex);
+			//form
+			$("#borde_i_hidden").attr("value", "#"  + hex);
+			$("#borde").ColorPickerHide();
+			
+			$("#preview").css("border-color", "#"  + hex);
+			},
+		});
+		
+		//subfondo
+		$("#subfondo").ColorPicker({	
+			onSubmit: function(hsb, hex, rgb, el) {
+			//$("#fondo_val").val(hex);
+			$("#subfondo").css("background-color", "#"  + hex);
+			//form
+			$("#subfondo_i_hidden").attr("value", "#"  + hex);
+			$("#subfondo").ColorPickerHide();
+			
+			$("#subblock").css("background-color", "#"  + hex);
+			},
+		});
+		
+		//letra, fuente
+		$("#font").ColorPicker({	
+			onSubmit: function(hsb, hex, rgb, el) {
+			//$("#fondo_val").val(hex);
+			$("#font").css("background-color", "#"  + hex);
+			//form
+			$("#font_i_hidden").attr("value", "#"  + hex);
+			$("#font").ColorPickerHide();
+			
+			$("#preview #subblock").css("color", "#"  + hex);
+			},
+		});
+		
+		//letra subblock
+		$("#font_subblock").ColorPicker({	
+			onSubmit: function(hsb, hex, rgb, el) {
+			//$("#fondo_val").val(hex);
+			$("#font_subblock").css("background-color", "#"  + hex);
+			//form
+			$("#font_subblock_i_hidden").attr("value", "#"  + hex);
+			$("#font_subblock").ColorPickerHide();
+			
+			$("#preview").css("color", "#"  + hex);
+			},
+		});
+
+		//gradient1
+		$("#gradient1").ColorPicker({	
+			onSubmit: function(hsb, hex, rgb, el) {
+			$("#gradient1").css("background-color", "#"  + hex);
+			$("#gradient1_i_hidden").attr("value", "#"  + hex);
+			$("#gradient1").ColorPickerHide();
+			other = $("#gradient2_i_hidden").attr("value");
+			$("#degrade").html(".block_std-options_cris{ background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #"+ hex +"), color-stop(1, "+other+") );background:-moz-linear-gradient( center top, #"+ hex+" 5%, "+other+" 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#"+hex+"', endColorstr='"+other+"');background-color:#"+hex+";border:1px solid #adadad;display:block;}");
+			//$("#degrade").html(".block_std-options_cris{ background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d6e1e8), color-stop(1, #b6b7b8) );background:-moz-linear-gradient( center top, #d6e1e8 5%, #b6b7b8 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d6e1e8', endColorstr='#b6b7b8');background-color:#d6e1e8;border:1px solid #adadad;display:block;}");
+			},
+		});
+
+		//gradient2
+		$("#gradient2").ColorPicker({	
+			onSubmit: function(hsb, hex, rgb, el) {
+			$("#gradient2").css("background-color", "#"  + hex);
+			$("#gradient2_i_hidden").attr("value", "#"  + hex);
+			$("#gradient2").ColorPickerHide();
+			other = $("#gradient1_i_hidden").attr("value");
+			$("#degrade").html(".block_std-options_cris{ background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, "+other+"), color-stop(1, #"+ hex +") );background:-moz-linear-gradient( center top, "+other+" 5%, #"+ hex +" 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='"+other+"', endColorstr='#"+ hex +"');background-color:#d6e1e8;border:1px solid #adadad;display:block;}");
+			
+			},
+		});
+
+		//mostrar borde
+		$("#visible_border").change(function(){
+		if($(this).val() == "si"){
+			$("#preview").css("border-style", "solid");
+		}else{
+			$("#preview").css("border-style", "none");
+		}
+		});
+		
+		//font style
+		$("#type_font").change(function(){
+			$("#preview").css("font-family", $(this).val());
+		});
+		
+		//mostrar resultados de votaciones
+		$("#mostrar_resultados").change(function(){
+			if($(this).val() == "si"){
+				$(".block_std-options_cris small").css("display", "block");
+			}else{
+				$(".block_std-options_cris small").css("display", "none");
+			}
+		});
+		
+		
+		//mostrar pregunta
+		$("#question").keyup(function(){
+		value = $(this).val();
+		$("#preview_question").html("¿ " + value + " ?");
+		});
+		$("#question").attr("value", "Escriba aqui la pregunta");
+		
+		//tipo de encuesta
+		$("#type_poll").change(function(){
+			type_poll = $(this).val();
+			load_options()
+		});
+		
+		//alamcenar y mostrar opciones
+		$("#options").keyup(function(){
+			load_options();
+		});
+		
+		$("#options").html("ejemplo 1 \nejemplo 2");
+		load_options();
+		
+		//padding
+		$( "#slider-padding" ).slider({
+		  range: "max",
+		  min: 3,
+		  max: 30,
+		  value: 6,
+		  slide: function( event, ui ) {
+			$( "#padding" ).val( ui.value + "px" );
+			$( "#preview" ).css("padding", ui.value + "px");
+		  }
+		});
+		$( "#padding" ).val( $( "#slider-padding" ).slider( "value" ) + "px");
+		
+		//font-size
+		$("#font_size_block").spinner({
+			max: 30,
+			min: 7,
+			start: 12,
+			change: set_font_block,
+			stop: set_font_block
+		});
+		$("#font_size_title").spinner({
+			max: 40,
+			min: 7,
+			start: 12,
+			change: set_font_title,
+			stop: set_font_title
+		});
+		
+		
+		//Inicizlizacion de valores predeterminados
+		$("#fondo").css("background-color", "#0f169c");
+			$("#fondo").ColorPickerSetColor("#0f169c");
+			$("#fondo_i_hidden").attr("value", "#0f169c");
+		$("#borde").css("background-color", "#334232");
+			$("#borde").ColorPickerSetColor("#334232");
+			$("#borde_i_hidden").attr("value", "#334232");
+		$("#subfondo").css("background-color", "#296580");
+			$("#subfondo").ColorPickerSetColor("#296580");
+			$("#subfondo_i_hidden").attr("value", "#296580");
+		$("#font").css("background-color", "#000");
+			$("#font").ColorPickerSetColor("#000");
+			$("#font_i_hidden").attr("value", "#000");
+		$("#font_subblock").css("background-color", "#fff");
+			$("#font_subblock").ColorPickerSetColor("#fff");
+			$("#font_subblock_i_hidden").attr("value", "#fff");
+		$("#gradient1").css("background-color", "#d6e1e8");
+			$("#gradient1").ColorPickerSetColor("#d6e1e8");
+			$("#gradient1_i_hidden").attr("value", "#d6e1e8");
+		$("#gradient2").css("background-color", "#b6b7b8");
+			$("#gradient2").ColorPickerSetColor("#b6b7b8");
+			$("#gradient2_i_hidden").attr("value", "#b6b7b8");
+		
+	});
+	
+	$(function() {
+	//js border
+	    $( "#conf-borde" ).slider({
+      range: "max",
+	  min:0,
+      max: 20,
+      value: 13,
+      slide: function(event, ui){
+	  	$( "#border-width-input" ).val( ui.value + "px");
+		$("#preview").css("border-width", ui.value + "px");
+	  },
+      });
+	  $( "#border-width-input" ).val( $( "#conf-borde" ).slider( "value" ) + "px" );
+	  
+	 //js border radius
+	  $( "#conf-borde-radius" ).slider({
+      range: "max",
+	  min:0,
+      max: 15,
+      value: 3,
+      slide: function( event, ui ){
+		$( "#border-radius-input" ).val( ui.value + "%");
+		$("#preview").css("border-radius", ui.value  + "%" );
+	  },
+	  });
+	  $( "#border-radius-input" ).val( $( "#conf-borde-radius" ).slider( "value" ) + "%");
+	  
+	  //js width
+	  $( "#preview_width" ).slider({
+      range: "max",
+	  min:200,
+      max: 900,
+      value: 300,
+      slide: function( event, ui ){
+		$( "#preview_width_input" ).val( ui.value + "px");
+		$("#preview").css("width", ui.value  + "px" );
+	  },
+	  });
+	  $( "#preview_width_input" ).val( $( "#preview_width" ).slider( "value" ) + "px");
+	  
+	//js height
+	  $( "#preview_height" ).slider({
+      range: "max",
+	  min:200,
+      max: 600,
+      value: 300,
+      slide: function( event, ui ){
+		$( "#preview_height_input" ).val( ui.value + "px");
+		$("#preview").css("height", ui.value  + "px" );
+	  },
+	  });
+	  $( "#preview_height_input" ).val( $( "#preview_height" ).slider( "value" ) + "px");
+	  
+	  //width subblock
+	  $( "#slider_width_subblock" ).slider({
+      range: "max",
+	  min:10,
+      max: 100,
+      value: 80,
+      slide: function( event, ui ){
+		$( "#width_subblock" ).val( ui.value + "%");
+		$("#preview #subblock").css("width", ui.value  + "%" );
+	  },
+	  });
+	  $( "#width_subblock" ).val( $( "#slider_width_subblock" ).slider( "value" ) + "%");
+	  
+	 //height subblock
+	  $( "#slider_height_subblock" ).slider({
+      range: "max",
+	  min:10,
+      max: 76,
+      value: 69,
+      slide: function( event, ui ){
+		$( "#height_subblock" ).val( ui.value + "%");
+		$("#preview #subblock").css("height", ui.value  + "%" );
+	  },
+	  });
+	  $( "#height_subblock" ).val( $( "#slider_height_subblock" ).slider( "value" ) + "%");
+	  
+	 //width subblock
+	  $( "#slider_width_blocktitle" ).slider({
+      range: "max",
+	  min:10,
+      max: 100,
+      value: 80,
+      slide: function( event, ui ){
+		$( "#width_blocktitle" ).val( ui.value + "%");
+		$("#preview #preview_question").css("width", ui.value  + "%" );
+	  },
+	  });
+	  $( "#width_blocktitle" ).val( $( "#slider_width_blocktitle" ).slider( "value" ) + "%");
+	  
+	 //height subblock
+	  $( "#slider_height_blocktitle" ).slider({
+      range: "max",
+	  min:10,
+      max: 100,
+      value: 23,
+      slide: function( event, ui ){
+		$( "#height_blocktitle" ).val( ui.value + "%");
+		$("#preview #preview_question").css("height", ui.value  + "%" );
+	  },
+	  });
+	  $( "#height_blocktitle" ).val( $( "#slider_height_blocktitle" ).slider( "value" ) + "%");
+	  
+	  
+	 //padding opcions subblock
+	  $( "#slider_block_std_options" ).slider({
+      range: "max",
+	  min:0,
+      max: 40,
+      value: 0,
+      slide: function( event, ui ){
+		$( "#block_std_options" ).val( ui.value + "px");
+		$(".block_std-options_cris").css("padding", ui.value  + "px" );
+		$("#padding_options").html(".block_std-options_cris{padding: "+ui.value+"px }");
+	  },
+	  });
+	  $( "#block_std_options" ).val( $( "#slider_block_std_options" ).slider( "value" ) + "px");
+	});
+
+	</script>
+</head>
+<body>
+<div id="main">
+	<div id="top">
+	Generador de Encuestas en linea.
+	
+	<div id="menu">
+		<a href="/">Inicio</a>
+		<a style="border-bottom:3px solid #596169" href="/create/" >Generador</a>
+		<a  href="/polls/" >Ejemplos</a>
+		<a href="#">Contacto</a>
+		<a href="#">Sobre esta aplicación</a>
+	</div>
+	</div>
+
+	<div id="medium">
+	<table width="80%">
+	<tr>
+	
+		<td width="60%">
+			<form id="formstdgenerator" onsubmit="return upload_configuration()">
+			
+			
+				<!-- colores -->
+				<label>Colores: </label><br />
+				
+				<div id="fondo" title="fondo"></div>
+				<input type="hidden" id="fondo_i_hidden" name="fondo" />
+				
+				<div   id="borde" title="borde"></div>
+				<input type="hidden" id="borde_i_hidden" name="borde" />
+				
+				<div  id="subfondo" title="subfondo"></div>
+				<input type="hidden" id="subfondo_i_hidden" name="subfondo" />
+
+				<div  id="font_subblock" title="letra titulo"></div>
+				<input type="hidden" id="font_subblock_i_hidden" name="font_subblock" />
+				
+				<div  id="font" title="letra bloque"></div>
+				<input type="hidden" id="font_i_hidden" name="font" />
+				
+				<div  id="gradient1" title="gradient 1"></div>
+				<input type="hidden" id="gradient1_i_hidden" name="gradient1" />
+
+				<div  id="gradient2" title="gradient 2"></div>
+				<input type="hidden" id="gradient2_i_hidden" name="gradient2" />
+				
+				
+				<br />
+				<label>Tipo: </label><br />
+				<select id="type_poll" name="type_poll">
+				<option value="radio">Mulitple con unica respuesta</option>
+				<option value="checkbox">Mulitple con multiple respuesta</option>
+				<!--<option value="textarea">Libre</option>-->
+				</select><br />
+				
+				<!-- Pregunta -->
+				<label>Pregunta: </label><br />
+				
+				<input type="text" name="question" id="question"><br />
+				 <!-- opciones -->
+				<label>Opciones(escriba las opciones en lineas diferentes): </label><br />
+				
+				<textarea type="text" name="options" id="options"></textarea><br />
+
+				
+				<table width="80%">
+					<tr>
+				<!-- ancho -->
+					<td width="50%">
+							<p>
+							  <label for="border-width-input">Ancho:</label>
+							  <input type="text" name="width" id="preview_width_input" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+							</p>
+							<div id="preview_width"></div>
+						</td>
+				<!-- alto -->		
+						<td>			
+							<p>
+							  <label for="preview_height_input">Alto:</label>
+							  <input type="text" name="height" id="preview_height_input" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+							</p>
+							<div id="preview_height"></div>
+						</td>
+					</tr>
+					
+					<tr>
+				<!-- grosor de el borde -->
+						<td>
+							<p>
+							  <label for="border-width-input">Ancho del borde:</label>
+							  <input type="text" name="border_width" id="border-width-input" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+							</p>
+							<div id="conf-borde"></div>
+						</td>
+				<!-- border readius -->		
+						<td>			
+							<p>
+							  <label for="border-radius-input">Esquinas:</label>
+							  <input type="text" name="border_radius" id="border-radius-input" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+							</p>
+							<div id="conf-borde-radius"></div>
+						</td>
+					</tr>
+				<!-- padding -->
+					<tr>
+						<td>
+						<p>
+						  <label for="padding">padding:</label>
+						  <input type="text" id="padding" name="padding" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+						</p>
+						<div id="slider-padding"></div>
+						</td>
+			<!-- width subblock -->	
+						<td>
+						<p>
+						  <label for="width_subblock">Ancho bloque 2:</label>
+						  <input type="text" id="width_subblock" name="width_subblock" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+						</p>
+						<div id="slider_width_subblock"></div>
+						</td>
+					</tr>
+				
+					<tr>
+			<!-- height subblock -->	
+						<td>
+							<p>
+							  <label for="height_subblock">Alto bloque 2:</label>
+							  <input type="text" id="height_subblock" name="height_subblock" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+							</p>
+							<div id="slider_height_subblock"></div>
+						</td>
+			<!-- ancho bloque de la question -->	
+						<td>
+							<p>
+							  <label for="width_blocktitle">Ancho question:</label>
+							  <input type="text" id="width_blocktitle" name="width_blocktitle" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+							</p>
+							<div id="slider_width_blocktitle"></div>
+						</td>
+					</tr>
+					
+					<tr>
+			<!-- height bloque de la question -->	
+						<td>
+							<p>
+							  <label for="height_blocktitle">Alto question:</label>
+							  <input type="text" id="height_blocktitle" name="height_blocktitle" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+							</p>
+							<div id="slider_height_blocktitle"></div>
+						</td>
+
+			<!-- padding subblock espacio entre bloques -->	
+						<td>
+							<p>
+							  <label for="padding_block_std_optionss">Espacio en bloques:</label>
+							  <input type="text" id="block_std_options" name="block_std_options" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+							</p>
+							<div id="slider_block_std_options"></div>
+						</td>
+					</tr>
+				</table>
+				
+				
+				<table width="100%">
+					<tr>
+						<td>
+							<label>Tamaño letra titulo</label><br />
+							<input type="text" name="font_size_title" value="19" id="font_size_title" />
+						</td>
+						<td>
+							<label>Tamaño letra bloque</label><br />
+							<input type="text" name="font_size_block" value="12" id="font_size_block" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Tipo de Letra</label><br />
+							<select id="type_font" name="font_style">
+							<option value="arial">Arial</option>
+							<option value="helvetica">Helvetica</option>
+							<option value="calibri" selected>Calibri</option>
+							<option value="verdana">Verdana</option>
+							<option value="trebuchet ms">Trebuchet MS</option>
+							</select>
+						</td>
+						<td>
+							<label>Borde visible</label><br />
+							<select id="visible_border" name="borde_visible">
+							<option value="si">Si</option>
+							<option value="no">No</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Mostrar resultados</label><br />
+							<select id="mostrar_resultados" name="mostrar_resultados">
+							<option value="si">Si</option>
+							<option value="no">No</option>
+							<option value="after">Mostrar despues de votar</option>
+							<option value="app">Mostrar resultados en el sitio</option>
+							</select>
+						</td>
+						<td>
+							<label>votar mas de una vez</label><br />
+							<select id="number_votes" name="number_votes">
+							<option value="si">Si</option>
+							<option value="no">No</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+
+		</td>
+		
+		<td>
+			<h3>Preview</h3>
+			<div id="preview">
+				<div id="preview_question">¿Escriba aqui la pregunta?</div>
+				<div id="subblock">
+				
+				</div>
+				<a class="button_crispander" >Enviar</a>
+				<a id="name_app" href="/">&copy;Powered&nbsp;by&nbsp;crispander</a>
+			</div>
+			
+		</td>
+	
+	</tr>
+	</table>
+	
+			<BR />
+	<button type="submit" class="button_submit">GENERAR ENCUESTA</button>
+</form>
+
+<br />
+<div id="cargando">  <img src="{{ STATIC_URL }}images/ajax.gif" alt="cargando" /></div>
+<div id="show">
+<br/>
+<a id="go_see" href="#">Ir a ver mi encuesta Generada</a>
+<h3>Embed - Instalación </h3>
+<span>Incluya el codigo de abajo donde quiera que le aparezca el recuadro que previamente diseño, para que esto funcione correctamente lo unico que tiene que hacer de mas es agregar la libreria de jQuery en las etiquetas <b>HEAD</b> de su documento html</span><br />
+<input type="text" width="200">
+
+<h3>Comparte tu encuesta en Facebook</h3>
+
+</div>
+
+	</div>
+
+
+	<div id="bottom">
+		powered by crispander
+	</div>
+</div>
+</body>
+</html>
