@@ -61,6 +61,7 @@ function set_font_title(){
 	$("#preview #preview_question").css("font-size", val + "px");
 }
 
+
  function login() {
 	nombre = document.getElementById("question").value;
     FB.login(function(response) {
