@@ -1,7 +1,9 @@
 mdb
 mmysite
-mpolls
-mpolls/gen_js
+rpolls
+rpolls/gen_js
 mstatic/css
-mstatic/js
-mtemplates/polls
+rstatic/js
+rtemplates
+rtemplates/admin
+rtemplates/polls
