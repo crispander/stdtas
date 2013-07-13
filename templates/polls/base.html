@@ -1,0 +1,43 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css">
+	<link rel="icon" type="image/png" href="{{ STATIC_URL }}images/chart_bar.png">
+	<script src="{{ STATIC_URL }}js/jquery-1.7.js" type="text/javascript"></script>
+	<script src="{{ STATIC_URL }}js/slider.js" type="text/javascript"></script>
+	{% block script %}
+	{% endblock script %}
+	
+	{% block css %}
+	{% endblock css %}
+	<title>Poll & chooces</title>
+</head>
+<body>
+
+<div id="top">
+Generador de Encuestas en linea.
+
+<div id="menu">
+	<a href="/">Inicio</a>
+	<a href="/create/" >Generador</a>
+	<a style="border-bottom:3px solid #596169" href="/polls/" >Ejemplos</a>
+	<a href="#">Contacto</a>
+	<a href="#">Sobre esta aplicación</a>
+</div>
+
+</div>
+	
+<div id="main">
+{% block content %}
+
+
+
+{% endblock content %}
+</div>
+
+<div id="bottom">
+	powered by crispander
+</div>
+	
+ </body>
+</html>

@@ -1,0 +1,28 @@
+{% extends "polls/base.html" %}
+{% block content %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/index.css">
+{% endblock css %}
+	
+<h3>Muro de encuestas generadas</h3>
+<div id="contenedor_principal">
+	<img src="{{ STATIC_URL }}images/logo_app.png" alt="logo app">
+    <div id="content">
+	   {% for poll in polls %}
+			<div class="block_std"><a href="/polls/{{ poll.id }}/">{{ poll.question }}</a>
+			<small><span>Fecha : </span>{{ poll.pub_date }}</small>
+			<p><span>Total votos : </span>{{ poll.votes_ultimate }}</p>
+			</div>
+		{% endfor %}
+    </div>
+	<div id="footer">
+    <label>powered by crispander</label>
+	</div>
+	<br>
+
+</div>
+
+{% endblock %}
+
+

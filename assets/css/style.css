@@ -1,0 +1,91 @@
+body{
+	font-family:trebuchet ms;
+}
+
+#slider {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    background-color: transparent;
+    color: silver;
+    text-align: center;
+}
+
+#something {
+    background-color:silver;
+    color: silver;
+    padding: 0px;
+    height: 30px;
+    text-align:center;
+}
+
+#name_app {
+    background:url('../images/fondo_1.png') repeat-x scroll;
+    color: silver;
+    padding: 0px;
+    height: 30px;
+    text-align:center;
+}
+
+
+#l_sena > img{
+	height:170px;
+}
+
+#l_sena{
+	position:relative;
+	top:-140px;
+	width:200px;
+	margin:left;
+}
+
+#content{
+margin:1px auto;
+width:600px;
+padding:10px;
+background:white;
+text-align:left;
+}
+
+#contenedor_principal{
+box-shadow:0 0 2px 2px black;
+border-radius:10px;
+width:630px;
+margin:200px auto;
+background:#00cc00;
+padding:0px;
+text-align:center;
+}
+
+a{
+	text-decoration:none;
+}
+
+.bloque_index a{
+	color:#A67600;
+	font-size:1.2em;
+}
+
+.bloque_index p{
+	color:#162EAE;
+	font-size:0.8em;
+}
+
+h1{
+	color:#A67600;
+}
+
+#contenedor_principal label{
+	color:black;
+	font-size:0.8em;
+}
+
+#gancho{
+	position:relative;
+	top:90px;
+}
+
+
+
+ 
