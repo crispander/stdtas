@@ -333,6 +333,7 @@
 	</script>
 </head>
 <body>
+<div id="fb-root"></div>
 <div id="main">
 	<div id="top">
 	Generador de Encuestas en linea.
@@ -355,7 +356,7 @@
 			
 			
 				<!-- colores -->
-				<label>Colores: </label><br />
+				<label class="title_option">Colores: </label><br />
 				
 				<div id="fondo" title="fondo"></div>
 				<input type="hidden" id="fondo_i_hidden" name="fondo" />
@@ -380,7 +381,7 @@
 				
 				
 				<br />
-				<label>Tipo: </label><br />
+				<label class="title_option">Tipo: </label><br />
 				<select id="type_poll" name="type_poll">
 				<option value="radio">Mulitple con unica respuesta</option>
 				<option value="checkbox">Mulitple con multiple respuesta</option>
@@ -388,11 +389,11 @@
 				</select><br />
 				
 				<!-- Pregunta -->
-				<label>Pregunta: </label><br />
+				<label class="title_option">Pregunta: </label><br />
 				
 				<input type="text" name="question" id="question"><br />
 				 <!-- opciones -->
-				<label>Opciones(escriba las opciones en lineas diferentes): </label><br />
+				<label class="title_option">Opciones(escriba las opciones en lineas diferentes): </label><br />
 				
 				<textarea type="text" name="options" id="options"></textarea><br />
 
@@ -402,7 +403,7 @@
 				<!-- ancho -->
 					<td width="50%">
 							<p>
-							  <label for="border-width-input">Ancho:</label>
+							  <label for="border-width-input" class="title_option">Ancho:</label>
 							  <input type="text" name="width" id="preview_width_input" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
 							</p>
 							<div id="preview_width"></div>
@@ -410,7 +411,7 @@
 				<!-- alto -->		
 						<td>			
 							<p>
-							  <label for="preview_height_input">Alto:</label>
+							  <label for="preview_height_input" class="title_option">Alto:</label>
 							  <input type="text" name="height" id="preview_height_input" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
 							</p>
 							<div id="preview_height"></div>
@@ -421,7 +422,7 @@
 				<!-- grosor de el borde -->
 						<td>
 							<p>
-							  <label for="border-width-input">Ancho del borde:</label>
+							  <label for="border-width-input" class="title_option">Ancho del borde:</label>
 							  <input type="text" name="border_width" id="border-width-input" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
 							</p>
 							<div id="conf-borde"></div>
@@ -429,7 +430,7 @@
 				<!-- border readius -->		
 						<td>			
 							<p>
-							  <label for="border-radius-input">Esquinas:</label>
+							  <label for="border-radius-input" class="title_option">Esquinas:</label>
 							  <input type="text" name="border_radius" id="border-radius-input" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
 							</p>
 							<div id="conf-borde-radius"></div>
@@ -439,7 +440,7 @@
 					<tr>
 						<td>
 						<p>
-						  <label for="padding">padding:</label>
+						  <label for="padding" class="title_option">padding:</label>
 						  <input type="text" id="padding" name="padding" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
 						</p>
 						<div id="slider-padding"></div>
@@ -447,7 +448,7 @@
 			<!-- width subblock -->	
 						<td>
 						<p>
-						  <label for="width_subblock">Ancho bloque 2:</label>
+						  <label for="width_subblock" class="title_option">Ancho bloque 2:</label>
 						  <input type="text" id="width_subblock" name="width_subblock" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
 						</p>
 						<div id="slider_width_subblock"></div>
@@ -458,7 +459,7 @@
 			<!-- height subblock -->	
 						<td>
 							<p>
-							  <label for="height_subblock">Alto bloque 2:</label>
+							  <label for="height_subblock" class="title_option">Alto bloque 2:</label>
 							  <input type="text" id="height_subblock" name="height_subblock" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
 							</p>
 							<div id="slider_height_subblock"></div>
@@ -466,7 +467,7 @@
 			<!-- ancho bloque de la question -->	
 						<td>
 							<p>
-							  <label for="width_blocktitle">Ancho question:</label>
+							  <label for="width_blocktitle" class="title_option">Ancho question:</label>
 							  <input type="text" id="width_blocktitle" name="width_blocktitle" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
 							</p>
 							<div id="slider_width_blocktitle"></div>
@@ -477,7 +478,7 @@
 			<!-- height bloque de la question -->	
 						<td>
 							<p>
-							  <label for="height_blocktitle">Alto question:</label>
+							  <label for="height_blocktitle" class="title_option">Alto question:</label>
 							  <input type="text" id="height_blocktitle" name="height_blocktitle" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
 							</p>
 							<div id="slider_height_blocktitle"></div>
@@ -486,7 +487,7 @@
 			<!-- padding subblock espacio entre bloques -->	
 						<td>
 							<p>
-							  <label for="padding_block_std_optionss">Espacio en bloques:</label>
+							  <label for="padding_block_std_optionss" class="title_option">Espacio en bloques:</label>
 							  <input type="text" id="block_std_options" name="block_std_options" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
 							</p>
 							<div id="slider_block_std_options"></div>
@@ -498,17 +499,17 @@
 				<table width="100%">
 					<tr>
 						<td>
-							<label>Tamaño letra titulo</label><br />
+							<label for="font_size_title" class="title_option">Tamaño letra titulo</label><br />
 							<input type="text" name="font_size_title" value="19" id="font_size_title" />
 						</td>
 						<td>
-							<label>Tamaño letra bloque</label><br />
+							<label for="font_size_block" class="title_option">Tamaño letra bloque</label><br />
 							<input type="text" name="font_size_block" value="12" id="font_size_block" />
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<label>Tipo de Letra</label><br />
+							<label for="type_font" class="title_option">Tipo de Letra</label><br />
 							<select id="type_font" name="font_style">
 							<option value="arial">Arial</option>
 							<option value="helvetica">Helvetica</option>
@@ -518,7 +519,7 @@
 							</select>
 						</td>
 						<td>
-							<label>Borde visible</label><br />
+							<label for="visible_border" class="title_option">Borde visible</label><br />
 							<select id="visible_border" name="borde_visible">
 							<option value="si">Si</option>
 							<option value="no">No</option>
@@ -527,7 +528,7 @@
 					</tr>
 					<tr>
 						<td>
-							<label>Mostrar resultados</label><br />
+							<label for="mostrar_resultados" class="title_option">Mostrar resultados</label><br />
 							<select id="mostrar_resultados" name="mostrar_resultados">
 							<option value="si">Si</option>
 							<option value="no">No</option>
@@ -536,7 +537,7 @@
 							</select>
 						</td>
 						<td>
-							<label>votar mas de una vez</label><br />
+							<label for="number_votes" class="title_option">votar mas de una vez</label><br />
 							<select id="number_votes" name="number_votes">
 							<option value="si">Si</option>
 							<option value="no">No</option>
@@ -578,6 +579,7 @@
 
 <h3>Comparte tu encuesta en Facebook</h3>
 
+<a onclick="login();" class="button_face">Compartir en facebook</a>
 </div>
 
 	</div>
