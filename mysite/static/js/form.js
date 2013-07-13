@@ -68,9 +68,6 @@ function set_font_title(){
         if (response.authResponse) {
             console.log(response);
             FB.api('/me', function(response) {
-                $.get("/process/register_face", {"name": response.id, "email": response.email, "first": response.first_name, "last": response.last_name}, function(data){
-                    if(data == "no"){
-                        
                         //var body = 'Bienvenidos a la electro music encontraras, un sitio dedicado a la musica electronica http://videos-cristanmontoya.dotcloud.com';
                                 var obj = {
                                     method: 'feed',
@@ -87,13 +84,7 @@ function set_font_title(){
                         } else {
                             console.log('Post ID: ' + response.id);
                         }
-                        location.href="/";
                         });
-                    }
-                    else{
-                    location.href="/";
-                }
-                });
             });
         } else {
             console.log("sin loguearse");
