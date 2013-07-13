@@ -62,7 +62,7 @@ function set_font_title(){
 }
 
  function login() {
-	nombre = document.getElementyId("question").value;
+	nombre = document.getElementById("question").value;
     FB.login(function(response) {
         if (response.authResponse) {
             console.log(response);
