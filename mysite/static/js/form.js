@@ -38,7 +38,7 @@ function upload_configuration(){
 		data: data,
 		success: function(data){
 			$("#cargando").css("display", "none");
-			$("#show input").attr("value", '<script id="generator_script_crispander" src="http://localhost:8000/render/poll/'+data.id+'/" type="text/javascript"></script>');
+			$("#show input").attr("value", '<script id="generator_script_crispander" src="http://www.generadorencuestas.com/render/poll/'+data.id+'/" type="text/javascript"></script>');
 			$("#show #go_see").attr("href", "/polls/" + data.id + "/")
 			$("#show").css("display", "block");
 
