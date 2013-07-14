@@ -37,6 +37,7 @@ function upload_configuration(){
 		url: "submit",
 		data: data,
 		success: function(data){
+			id_poll = data.id;
 			$("#cargando").css("display", "none");
 			$("#show input").attr("value", '<script id="generator_script_crispander" src="http://www.generadorencuestas.com/render/poll/'+data.id+'/" type="text/javascript"></script>');
 			$("#show #go_see").attr("href", "/polls/" + data.id + "/")
@@ -71,12 +72,12 @@ function set_font_title(){
                         //var body = 'Bienvenidos a la electro music encontraras, un sitio dedicado a la musica electronica http://videos-cristanmontoya.dotcloud.com';
                                 var obj = {
                                     method: 'feed',
-                                    name: 'Generador encuestas',
-                                    link: 'https://www.generadorencuestas.com/',
-                                    picture: "http://s9.postimage.org/6i1sluj3j/image.png",
-                                    caption: 'Generador de encuestas en linea',
-                                    description: nombre,
-                                    message: response.first_name + ' ha creado esta encuesta que quiere compartir con en facebook',
+                                    name: 'Generador encuestas sociales',
+                                    link: 'https://www.generadorencuestas.com/polls/' + poll_id,
+                                    picture: "http://www.generadorencuestas.com/static/images/icon_polls.png",
+                                    caption: 'Crea tus encuestas personalizadas y compartelas con tus amigos, y conoce la opinion del publico',
+                                    description: "¿ " + nombre + "?",
+                                    message: response.first_name + ' ha creado esta encuesta que quiere compartir haz click para ir a verla.',
                                 };
                         FB.api('/me/feed', 'post', obj, function(response) {
                         if (!response || response.error) {

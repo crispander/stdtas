@@ -16,6 +16,7 @@
 	<script>
 	var options_array = [];
 	var type_poll = "radio";
+	var id_poll = null;
 	$(document).ready(function(){
 	$("#degrade").html(".block_std-options_cris{	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d6e1e8), color-stop(1, #b6b7b8) );background:-moz-linear-gradient( center top, #d6e1e8 5%, #b6b7b8 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d6e1e8', endColorstr='#b6b7b8');background-color:#d6e1e8;border:1px solid #adadad;display:block;}");
 	
@@ -571,15 +572,15 @@
 <br />
 <div id="cargando">  <img src="{{ STATIC_URL }}images/ajax.gif" alt="cargando" /></div>
 <div id="show">
+<h3>Comparte tu encuesta en Facebook</h3>
+
+<a onclick="login();" class="button_face">Compartir en facebook</a>
 <br/>
 <a id="go_see" href="#">Ir a ver mi encuesta Generada</a>
 <h3>Embed - Instalación </h3>
 <span>Incluya el codigo de abajo donde quiera que le aparezca el recuadro que previamente diseño, para que esto funcione correctamente lo unico que tiene que hacer de mas es agregar la libreria de jQuery en las etiquetas <b>HEAD</b> de su documento html</span><br />
 <input type="text" width="200">
 
-<h3>Comparte tu encuesta en Facebook</h3>
-
-<a onclick="login();" class="button_face">Compartir en facebook</a>
 </div>
 
 	</div>
