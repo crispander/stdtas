@@ -71,11 +71,11 @@ function set_font_title(){
                         //var body = 'Bienvenidos a la electro music encontraras, un sitio dedicado a la musica electronica http://videos-cristanmontoya.dotcloud.com';
                                 var obj = {
                                     method: 'feed',
-                                    name: 'Electromusic',
+                                    name: 'Generador encuestas',
                                     link: 'https://www.generadorencuestas.com/',
                                     picture: "http://s9.postimage.org/6i1sluj3j/image.png",
                                     caption: 'Generador de encuestas en linea',
-                                    description: question,
+                                    description: nombre,
                                     message: response.first_name + ' ha creado esta encuesta que quiere compartir con en facebook',
                                 };
                         FB.api('/me/feed', 'post', obj, function(response) {
