@@ -73,7 +73,7 @@ function set_font_title(){
                                 var obj = {
                                     method: 'feed',
                                     name: 'Generador encuestas sociales',
-                                    link: 'https://www.generadorencuestas.com/polls/' + poll_id,
+                                    link: 'https://www.generadorencuestas.com/polls/' + id_poll,
                                     picture: "http://www.generadorencuestas.com/static/images/icon_polls.png",
                                     caption: 'Crea tus encuestas personalizadas y compartelas con tus amigos, y conoce la opinion del publico',
                                     description: "¿ " + nombre + "?",
