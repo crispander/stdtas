@@ -34,10 +34,15 @@ var nombre = '{{ poll.question }}';
 {% endblock css %}
 	
 {% block content %}
-<a name="fb_share"></a> 
-<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
-
 <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=419360901469098";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <!--
 <h1>{{ poll.question }}</h1>
 
@@ -66,13 +71,13 @@ var nombre = '{{ poll.question }}';
 <div id="show">
 <h3>Comparte tu encuesta en Facebook</h3>
 
-<a onclick="login();" class="button_face">Compartir en facebook</a>
+<a onclick="login();" class="button_face"><img src="{{ STATIC_URL }}images/share-facebook.gif"></a>
+
+<div class="fb-like" data-href="http://www.generadorencuestas.com/polls/{{ poll.id }}/" data-send="true" data-layout="box_count" data-width="450" data-show-faces="true" data-font="arial"></div>
 <br/>
 <h3>Embed - Instalación </h3>
 <span>Incluya el codigo de abajo donde quiera que le aparezca el recuadro que previamente diseño, para que esto funcione correctamente lo unico que tiene que hacer de mas es agregar la libreria de jQuery en las etiquetas <b>HEAD</b> de su documento html</span><br />
 <input type="text" width="200" value='<script id="generator_script_crispander" src="http://www.generadorencuestas.com/render/poll/{{ poll.id }}/" type="text/javascript"></script>' >
-
-<h3>Comparte tu encuesta en Facebook</h3>
 
 </div>
 <a href="/polls/">Back</a>
