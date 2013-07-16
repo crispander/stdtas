@@ -93,7 +93,7 @@ html, body{
 	background-color:#0a0a0a;
 	border:1px solid #dcdcdc;
 	display:block;
-	color:#d6ced6;
+	color:white;
 	font-family:Verdana;
 	padding:10px 0;
 	font-size:12px;
@@ -105,6 +105,11 @@ html, body{
 	text-align:center;
 }
 
+#bottom table{
+	margin-top:50px;
+	color:white;
+	font-family:calibri, verdana, arial;
+}
 
 .boton1 {
 	-moz-box-shadow:inset 0px 1px 0px 0px #cae3fc;

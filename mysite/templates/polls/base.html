@@ -11,6 +11,15 @@
 	{% block css %}
 	{% endblock css %}
 	<title>Poll & chooces</title>
+	
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=419360901469098";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
 </head>
 <body>
 
@@ -24,7 +33,7 @@
 	<a href="#">Contacto</a>
 	<a href="#">Sobre esta aplicación</a>
 </div>
-<span>Generador de Encuestas en linea</span>
+<img src="{{ STATIC_URL }}images/logo_app.png" height="30" alt="generadoe encuestas en linea">
 </div>
 	
 <div id="main">
@@ -36,7 +45,54 @@
 </div>
 
 <div id="bottom">
-	powered by crispander
+	powered by EncuestasSociales
+	<table width="1000"  align="center">
+		<tr>
+			<td width="350" align="left">
+				<h3>Opciones</h3>
+				<ul>
+					<li>Sobre esta aplicación</li>
+					<li>Donaciones</li>
+					<li>Inicio</li>
+					<li>Generador de encuestas</li>
+					<li>Encuestas creadas</li>
+					<li>Las mas votadas</li>
+					<li>Contacto</li>
+				</ul>
+			</td >
+			<td width="350" align="left">
+				<h3>Links relacionados</h3>
+				<ul>
+					<li>Poll</li>
+					<li>www.fleet.com</li>
+					<li>Ubicarme mi pagina en estas secciòn</li>
+				</ul>
+			</td>
+			<td width="300">
+				<div class="fb-like" data-href="http://www.generadorencuestas.com" data-layout="box_count" data-width="450" data-show-faces="true" data-font="arial"></div>
+			
+				<!-- google + -->
+				<!-- Inserta esta etiqueta donde quieras que aparezca Botón +1. -->
+				<div href="http://www.generadorencuestas.com" class="g-plusone" data-size="tall"></div>
+
+				<!-- Inserta esta etiqueta después de la última etiqueta de Botón +1. -->
+				<script type="text/javascript">
+				  window.___gcfg = {lang: 'es'};
+
+				  (function() {
+					var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+					po.src = 'https://apis.google.com/js/plusone.js';
+					var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+				  })();
+				</script>
+				
+				<!-- button twitter tweet -->
+				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.generadorencuestas.com" data-via="crispander" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+			
+			</td>
+		</tr>
+	</table>
 </div>
 	
  </body>

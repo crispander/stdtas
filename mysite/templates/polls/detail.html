@@ -1,6 +1,7 @@
 {% extends "polls/base.html" %}
 
 {% block script %}
+<link rel="canonical" href="http://www.generadorencuestas.com/polls/{{ poll.id }}" />
 <script type="text/javascript">
 var id_poll = '{{ poll.id }}';
 var nombre = '{{ poll.question }}';
@@ -10,20 +11,19 @@ var nombre = '{{ poll.question }}';
 
 {% block css %}
 <style>
-#show{
-	width:800px;
-	text-align:center;
-	margin:auto;
-	display:block;
+#table_content{
+	font-size:o.9em;
+	font-family:calibri, verdana, arial;
 }
 
-#show input{
-	width:600px;
+textarea{
+	width:400px;
 	background:#000;
 	color:#dcdcdc;
-	border-radius:10px;
 	outline:none;
+	height:50px;
 	padding:10px;
+	resize:none;
 }
 
 #preview{
@@ -68,17 +68,46 @@ var nombre = '{{ poll.question }}';
 <br />
 <br />
 <br />
-<div id="show">
-<h3>Comparte tu encuesta en Facebook</h3>
 
-<a onclick="login();" class="button_face"><img src="{{ STATIC_URL }}images/share-facebook.gif"></a>
+<table width="100%"  cellspacing="30"  id="table_content">
+<tr>
+	<td width="20%">
+		<h3>Compartir encuesta en Facebook</h3>
+		<a onclick="login();" class="button_face"><img src="{{ STATIC_URL }}images/share-facebook.gif"></a>
+	</td>
+	<td width="30%">
+		<h3>Embed <> Instalación </h3>
+		<span>Incluya el código de abajo donde quiera que le aparezca el recuadro que se muestra en la parte de arriba, para que esto funcione correctamente lo único que tiene que hacer de mas es agregar la librería de jQuery en las etiquetas <b>HEAD</b> de su documento html</span><br /><br />
+		<textarea><script id="generator_script_crispander" src="http://www.generadorencuestas.com/render/poll/{{ poll.id }}/" type="text/javascript"></script></textarea>
+	</td>
+	<td width="30%">
+		<div class="fb-like" data-href="http://www.generadorencuestas.com/polls/{{ poll.id }}" data-layout="box_count" data-width="450" data-show-faces="true" data-font="arial"></div>
+	
+		<!-- google + -->
+		<!-- Inserta esta etiqueta donde quieras que aparezca Botón +1. -->
+		<div href="http://www.generadorencuestas.com/polls/{{ poll.id }}" class="g-plusone" data-size="tall"></div>
 
-<div class="fb-like" data-href="http://www.generadorencuestas.com/polls/{{ poll.id }}/" data-send="true" data-layout="box_count" data-width="450" data-show-faces="true" data-font="arial"></div>
-<br/>
-<h3>Embed - Instalación </h3>
-<span>Incluya el codigo de abajo donde quiera que le aparezca el recuadro que previamente diseño, para que esto funcione correctamente lo unico que tiene que hacer de mas es agregar la libreria de jQuery en las etiquetas <b>HEAD</b> de su documento html</span><br />
-<input type="text" width="200" value='<script id="generator_script_crispander" src="http://www.generadorencuestas.com/render/poll/{{ poll.id }}/" type="text/javascript"></script>' >
+		<!-- Inserta esta etiqueta después de la última etiqueta de Botón +1. -->
+		<script type="text/javascript">
+		  window.___gcfg = {lang: 'es'};
 
-</div>
-<a href="/polls/">Back</a>
+		  (function() {
+			var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+			po.src = 'https://apis.google.com/js/plusone.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+		  })();
+		</script>
+		
+		<!-- button twitter tweet -->
+		<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.generadorencuestas.com/polls/{{ poll.id }}" data-via="crispander" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	
+	</td> 
+	<td width="10%"> 
+		<a href="/polls/">Atras</a>
+	</td>
+</tr>
+</table>
+
+
 {% endblock content %}

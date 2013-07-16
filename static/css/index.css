@@ -37,3 +37,29 @@ text-align:center;
 	font-size:0.8em;
 	font-family:calibri, verdana, arial;
 }
+
+#bottom{
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0a0a0a), color-stop(1, #7d7d7d) );
+	background:-moz-linear-gradient( center top, #0a0a0a 5%, #7d7d7d 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0a0a0a', endColorstr='#7d7d7d');
+	background-color:#0a0a0a;
+	border:1px solid #dcdcdc;
+	display:block;
+	color:#d6ced6;
+	font-family:Verdana;
+	padding:10px 0;
+	font-size:12px;
+	font-weight:normal;
+	text-decoration:none;
+	width:96%;
+	margin:auto;
+	height:300px;
+	text-align:center;
+}
+
+#bottom table{
+	margin-top:50px;
+}

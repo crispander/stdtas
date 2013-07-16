@@ -17,9 +17,9 @@ urlpatterns = patterns('',
     url(r'^polls/$', ViewIndex.as_view()),
     url(r'^polls/(?P<pk>\d+)/$', ViewDetail.as_view()),
     url(r'^polls/(?P<pk>\d+)/results/$', ViewResults.as_view()),
-    url(r'^polls/(?P<poll_id>\d+)/submit/$', 'polls.views.submit'),
-    url(r'^create/submit/$', 'polls.views.create_poll'),
-	url(r'^render/poll/(?P<pk>\d+)/$', 'polls.views.render_poll'),
+    url(r'^polls/(?P<poll_id>\d+)/submit/$', submit),
+    url(r'^create/submit/$', create_poll),
+	url(r'^render/poll/(?P<pk>\d+)/$', render_poll),
     #api
     url(r'^api/', include(v1_api.urls)),
     

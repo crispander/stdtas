@@ -70,6 +70,10 @@ h1{
 	text-align:center;
 }
 
+#bottom table{
+	margin-top:50px;
+}
+
  .block_std{
 	display:block;
 	-moz-box-shadow:inset 0px 2px 0px 0px #bcc0c2;
