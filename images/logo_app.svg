@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="Documento nuevo 1">
+  <defs
+     id="defs4">
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect2987"
+       is_visible="true" />
+    <filter
+       inkscape:collect="always"
+       id="filter3776"
+       x="-0.32182119"
+       width="1.6436424"
+       y="-0.42495131"
+       height="1.8499026">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="2.3535049"
+         id="feGaussianBlur3778" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="316.4737"
+     inkscape:cy="837.61092"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="706"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g3786"
+       transform="matrix(0.66045113,0,0,0.66045113,9.0195875,-121.79642)"
+       inkscape:export-filename="C:\Users\crispander\Documents\repositorios\deployment_polls\mysite\static\images\logo_app.png"
+       inkscape:export-xdpi="121.83862"
+       inkscape:export-ydpi="121.83862">
+      <path
+         sodipodi:nodetypes="cccssscc"
+         inkscape:connector-curvature="0"
+         id="rect2991"
+         d="m 126.81685,254.90648 12.61617,11.31422 -68.99413,70.21987 c 0,0 -2.221304,1.06678 -4.90563,1.00221 -2.172848,-0.0523 -4.736148,-1.10703 -5.984397,-2.01125 -1.189885,-0.86194 -2.53983,-2.6339 -2.972702,-4.38266 -0.581909,-2.35087 -0.01613,-4.65983 -0.01613,-4.65983 z"
+         style="fill:#808080;fill-opacity:1;stroke:none" />
+      <path
+         transform="matrix(0.35952174,0,0,0.30861725,32.893772,169.48147)"
+         d="m 231.32493,412.43054 c 0,28.17354 -22.83917,51.0127 -51.0127,51.0127 -28.17354,0 -51.01271,-22.83916 -51.01271,-51.0127 0,-28.17354 22.83917,-51.0127 51.01271,-51.0127 28.17353,0 51.0127,22.83916 51.0127,51.0127 z"
+         sodipodi:ry="51.012703"
+         sodipodi:rx="51.012703"
+         sodipodi:cy="412.43054"
+         sodipodi:cx="180.31223"
+         id="path2989"
+         style="fill:#ff0000;fill-opacity:1;stroke:none"
+         sodipodi:type="arc" />
+      <path
+         sodipodi:nodetypes="cccccssc"
+         inkscape:connector-curvature="0"
+         id="rect2996"
+         d="m 95.964495,285.65641 10.921615,-9.62601 24.68626,-14.36511 -0.6813,12.34005 -22.29967,23.7729 c 0,0 -4.08955,2.40397 -10.101524,-2.27285 -1.219566,-0.94872 -2.477019,-2.99016 -2.804209,-5.02795 -0.390492,-2.43205 0.278828,-4.82103 0.278828,-4.82103 z"
+         style="fill:#808080;fill-opacity:1;stroke:none" />
+      <path
+         sodipodi:nodetypes="sssss"
+         inkscape:connector-curvature="0"
+         id="path2999"
+         d="m 108.08632,263.81186 c 0,3.41709 -2.15304,6.30033 -5.57013,6.30033 -3.417083,0 -6.804235,-2.88324 -6.804235,-6.30033 0,-3.41709 2.770097,-6.18719 6.187185,-6.18719 3.41709,0 6.18718,2.7701 6.18718,6.18719 z"
+         style="fill:#b3b3b3;fill-opacity:1;stroke:none"
+         transform="matrix(0.64966482,-0.59490984,0.92091449,1.0124446,-176.81848,54.938674)" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3002"
+         d="m 84.852814,294.2427 c 0,0 -4.545687,8.83883 4.545686,11.61675 9.091373,2.77792 11.86929,1.26269 11.86929,1.26269 l -2.020302,-2.27284 c 0,0 -12.626907,-3.283 -12.374369,-4.54569 0.252538,-1.26269 -2.020305,-6.06091 -2.020305,-6.06091 z"
+         style="opacity:0.75510206;fill:#ffffff;stroke:#ffffff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter3776)" />
+      <text
+         transform="scale(0.95655251,1.0454209)"
+         sodipodi:linespacing="125%"
+         id="text3782"
+         y="300.08655"
+         x="160.26413"
+         style="font-size:48.46265793px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Tw Cen MT;-inkscape-font-specification:Tw Cen MT"
+         xml:space="preserve"><tspan
+           y="300.08655"
+           x="160.26413"
+           id="tspan3784"
+           sodipodi:role="line">GeneradorEncuestas</tspan></text>
+    </g>
+  </g>
+</svg>

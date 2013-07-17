@@ -1,0 +1,64 @@
+{% extends "polls/base.html" %}
+
+{% block menu %}
+	<a href="/">Inicio</a>
+	<a href="/create/" >Generador</a>
+	<a  href="/polls/" >Ejemplos</a>
+	<a href="/contact">Contacto</a>
+	<a style="border-bottom:3px solid #596169" href="/sobreapp">Sobre esta aplicación</a>
+{% endblock menu %}
+
+{% block css %}
+<style>
+#contenedor_principal #me{
+	display:block;
+	margin:auto;
+}
+</style>
+{% endblock css %}
+
+{% block content %}
+
+
+<div id="contenedor_principal">
+	<h3>Generador Encuestas</h3>
+	<img src="{{ STATIC_URL }}images/icon_mio.png" id="me">
+	
+	<table width="100%" cellspacing="20">
+	<tr>
+	<td width="70%">
+		<p align="justify" style="font-family:verdana,arial;">Esta aplicación se hizo con fin de tener una forma fácil y rapida de crear una encuesta
+		personalizada y a gusto del diseñador, además permitiendo una socialización de esta en varios medios o redes sociales
+		esta misma fue creada por <b><name> Cristian David Montoya </name></b> Tecnólogo en ciencias iniformáticas y estudiante de ingeniería de sistemas.
+		este generador es completamente gratuito sin costo alguno y diseñado para uso libre, este no asume garantía pero si recibimos comentarios y observaciones 
+		para ir mejorando en un futuro, si desea hacer una petición para mejorar el aplicativo con gusto la recibiremos, si es asi porfavor considere hacer una donación para
+		cada vez mejorar y poder pagar el hosting o alojamiento de este en internet o si también le parece bueno este proyecto desea seguir usandolo también envienos
+		un donativo para que <b>Generador de encuestas siga online </b>.
+	</td>
+	<td width="30%">
+		<h2>Donación</h2>
+		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+		<input type="hidden" name="cmd" value="_s-xclick">
+		<input type="hidden" name="hosted_button_id" value="QB3JRJE5GB6GU">
+		<table>
+		<tr><td><input type="hidden" name="on0" value="Selecciona el valor que nos desees dar">Selecciona el valor que nos desees dar</td></tr><tr><td><select name="os0">
+			<option value="Tipo 1">Tipo 1 $1.00 USD</option>
+			<option value="Tipo 2">Tipo 2 $5.00 USD</option>
+			<option value="Tipo 3">Tipo 3 $10.00 USD</option>
+		</select> </td></tr>
+		</table>
+		<input type="hidden" name="currency_code" value="USD">
+		<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+		<img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+		</form>
+	</td>
+	</tr>
+	</table>
+</div>
+<br />
+<br />
+
+
+<br />
+<br />
+{% endblock %}

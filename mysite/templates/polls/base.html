@@ -27,11 +27,13 @@
 
 
 <div id="menu">
+{% block menu %}
 	<a href="/">Inicio</a>
 	<a href="/create/" >Generador</a>
 	<a style="border-bottom:3px solid #596169" href="/polls/" >Ejemplos</a>
-	<a href="#">Contacto</a>
-	<a href="#">Sobre esta aplicación</a>
+	<a href="/contact">Contacto</a>
+	<a href="/sobreapp">Sobre esta aplicación</a>
+{% endblock menu %}
 </div>
 <img src="{{ STATIC_URL }}images/logo_app.png" height="30" alt="generadoe encuestas en linea">
 </div>

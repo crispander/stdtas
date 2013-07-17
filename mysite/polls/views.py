@@ -31,7 +31,12 @@ class ViewResults(DetailView):
     model = Poll
     context_object_name = 'poll'
 
-
+class ViewContact(TemplateView):
+    template_name = 'polls/contact.html'
+	
+class ViewSobreApp(TemplateView):
+    template_name = 'polls/sobreapp.html'
+	
 def submit(request, poll_id):
     p = get_object_or_404(Poll, pk=poll_id)
     type_poll = request.GET['type_poll']

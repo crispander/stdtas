@@ -20,6 +20,8 @@ urlpatterns = patterns('',
     url(r'^polls/(?P<poll_id>\d+)/submit/$', submit),
     url(r'^create/submit/$', create_poll),
 	url(r'^render/poll/(?P<pk>\d+)/$', render_poll),
+	url(r'^contact/$', ViewContact.as_view()),
+	url(r'^sobreapp/$', ViewSobreApp.as_view()),
     #api
     url(r'^api/', include(v1_api.urls)),
     

@@ -3,6 +3,7 @@ mmysite
 rpolls
 rpolls/gen_js
 mstatic/css
+mstatic/images
 rstatic/js
 rtemplates
 rtemplates/admin
