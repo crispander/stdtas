@@ -33,10 +33,10 @@ class ViewResults(DetailView):
 
 class ViewContact(TemplateView):
     template_name = 'polls/contact.html'
-	
+    
 class ViewSobreApp(TemplateView):
     template_name = 'polls/sobreapp.html'
-	
+    
 def submit(request, poll_id):
     p = get_object_or_404(Poll, pk=poll_id)
     type_poll = request.GET['type_poll']
@@ -180,7 +180,7 @@ def create_poll(request):
         padding_std_options = request.GET['block_std_options']
     except KeyError:
         padding_std_options  = "7"
-	
+    
     if request.user.is_authenticated():
         obj = Poll.objects.create(tipo = type, question=question,user=request.user, pub_date=datetime.now(), width=width, height=height, border_visible=borde_visible, border_width=border_width, border_color=borde, background=fondo, border_radius=border_radius, sub_background=subfondo, font_family=font_style, font_color=letra, color_title=letra_subblock, padding=padding, width_subblock=width_subblock, height_subblock=height_subblock, width_blocktitle=width_blocktitle, height_blocktitle=height_blocktitle, gradient1=gradient1, gradient2=gradient2, show_results=mostrar_resultados, size_title=font_size_title, size_block=font_size_block, padding_std_options=padding_std_options)
     else:
@@ -214,8 +214,8 @@ def render_poll(request, pk):
     c17 = id poll
     c18 = mostrar resultados
     c19 = font_size_title
-	c20 = font_size_block
-	c21 = padding_std_options
+    c20 = font_size_block
+    c21 = padding_std_options
     """
     obj = Poll.objects.get(pk=pk)
     choices = obj.get_choices()
@@ -239,3 +239,13 @@ def render_poll(request, pk):
     send = fd.format(corchete_c="}",corchete_o="{", nombre=obj.question, choices=html, c1=obj.background, c2=obj.border_radius, c3=str(str(obj.border_width) + " solid " + str(obj.border_color)), c4=obj.width, c5=obj.height, c6=obj.sub_background, c7=obj.font_family, c8=obj.font_color, c9=obj.padding, c10=obj.width_subblock, c11=obj.height_subblock, c12=obj.width_blocktitle, c13=obj.height_blocktitle, c14=obj.color_title, c15=obj.gradient1, c16=obj.gradient2, c17=obj.id, c18=obj.show_results, c19=obj.size_title, c20=obj.size_block, c21=obj.padding_std_options)
 
     return HttpResponse(send, "text/javascript")
+    
+def submit_Contact(request):
+    """sube la informacion que dejan en la parte de contacto"""
+    name = request.REQUEST["name_crispander"]
+    mail = request.REQUEST["mail_crispander"]
+    text = request.REQUEST["text_crispander"]
+    
+    value = Contact.objects.create(name=name, mail=mail,text=text)
+    
+    return HttpResponse("gracias", "text/plain")

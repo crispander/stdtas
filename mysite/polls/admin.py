@@ -17,4 +17,5 @@ admin.site.register(Poll, PollAdmin)
 
 admin.site.register(Choice)
 admin.site.register(UserProfile)
+admin.site.register(Contact)
 

@@ -80,7 +80,19 @@ class Choice(models.Model):
         ordering = ["-votes"]
     
     
+class Contact(models.Model):
+    name = models.CharField(max_length=200)
+    mail = models.CharField(max_length=200)
+    text = models.CharField(max_length=200)
+    date = models.DateTimeField(auto_now_add=True, auto_now=True)
+
+    def __unicode__(self):
+        return self.name
     
+    class Meta:
+        ordering = ["-date"]
+
+
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
