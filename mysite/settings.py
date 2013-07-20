@@ -16,15 +16,25 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
-
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-# Allow all host headers
-ALLOWED_HOSTS = ['*']
+import sys, urlparse
+urlparse.uses_netloc.append('postgres')
+urlparse.uses_netloc.append('mysql')
+try:
+    if os.environ.has_key('DATABASE_URL'):
+        url = urlparse.urlparse(os.environ['DATABASE_URL'])
+        DATABASES['default'] = {
+            'NAME':     url.path[1:],
+            'USER':     url.username,
+            'PASSWORD': url.password,
+            'HOST':     url.hostname,
+            'PORT':     url.port,
+        }
+        if url.scheme == 'postgres':
+            DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
+        if url.scheme == 'mysql':
+            DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
+except:
+    print "Unexpected error:", sys.exc_info()
 
 # DATABASES = {
    # 'default': {
