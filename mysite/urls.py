@@ -10,6 +10,7 @@ admin.autodiscover()
 v1_api = Api(api_name='v1')
 v1_api.register(EntryResource())
 v1_api.register(EntryResource2())
+v1_api.register(EntryResource3())
 
 urlpatterns = patterns('',
     url(r'^$', ViewHome.as_view()),

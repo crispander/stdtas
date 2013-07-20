@@ -59,7 +59,7 @@ class Poll(models.Model):
         votes = 0
         choices = self.choice_set.all()
         for choice in choices:
-            votes += choice.votes
+            votes += choice.count_votes()
             
         return votes
 
@@ -70,15 +70,36 @@ class Poll(models.Model):
 
 class Choice(models.Model):
     poll = models.ForeignKey(Poll)
-    choice = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
     votes = models.IntegerField()
 
     def __unicode__(self):
-        return self.choice
+        return self.name
     
     class Meta:
         ordering = ["-votes"]
+        
+    def count_votes(self):
+        """esta funcion es para obtener los resultadps de la elecion actual."""
+        
+        try:
+            number = Vote.objects.filter(choice=self)[0].number_votes
+        except IndexError:
+           number = 0
+        
+        return number
+
+class Vote(models.Model):
+    choice = models.ForeignKey(Choice)
+    ip = models.CharField(max_length=20, blank=True, null=True)
+    number_votes = models.IntegerField()
+    date = models.DateTimeField(auto_now_add=True, auto_now=True)
+
+    def __unicode__(self):
+        return self.choice.name
     
+    class Meta:
+        ordering = ["-date"]
     
 class Contact(models.Model):
     name = models.CharField(max_length=200)

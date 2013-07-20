@@ -10,7 +10,7 @@
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <ul>
 {% for choice in poll.choice_set.all %}
-    <li class="block_std">{{ choice.choice|title }}  <small>{{ choice.votes }} vote{{ choice.votes|pluralize }}</small></li>
+    <li class="block_std">{{ choice.name|title }}  <small>{{ choice.count_votes}} vote{{ choice.count_votes|pluralize }}</small></li>
 {% endfor %}
 </ul>
 

@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import *
 from mysite.polls.models import *
+import simplejson
 
 import os
 
@@ -51,12 +52,17 @@ def submit(request, poll_id):
                 'error_message': "You didn't select a choice.",
             }, context_instance=RequestContext(request))
         else:
-            selected_choice.votes += 1
-            selected_choice.save()
-            # Always return an HttpResponseRedirect after successfully dealing
-            # with POST data. This prevents data from being posted twice if a
-            # user hits the Back button.
-            return HttpResponseRedirect('/polls/{0}/results/'.format(p.id))
+            try:
+                anterior = Vote.objects.filter(choice=selected_choice)[0].number_votes
+            except IndexError:
+                anterior = 0
+            vote = Vote.objects.create(choice=selected_choice, number_votes=anterior + 1)
+            response = HttpResponse(simplejson.dumps({"key": "value", "key2": "value"}))  
+            response["Access-Control-Allow-Origin"] = "*"  
+            response["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"  
+            response["Access-Control-Max-Age"] = "1000"  
+            response["Access-Control-Allow-Headers"] = "*"
+            return response
     elif type_poll == 'checkbox':
         for i in request.GET:
             if not i == 'type_poll':
@@ -69,6 +75,7 @@ def submit(request, poll_id):
                     selected_choice.save()
         return HttpResponseRedirect('/polls/{0}/results/'.format(p.id))
 
+                                       
 def create_poll(request):
     """creacion de una encuesta"""
     #main
@@ -188,7 +195,7 @@ def create_poll(request):
     
     opciones = options.split("\n")
     for i in opciones:
-        Choice.objects.create(poll=obj, votes=0, choice=i)
+        Choice.objects.create(poll=obj, votes=0, name=i)
     response = simplejson.dumps({"response": "creado", "id": obj.pk})
     return HttpResponse(response, "text/json")
 
@@ -235,7 +242,7 @@ def render_poll(request, pk):
     radio = radio.read()
 
     for i in choices:
-        html += radio.format(c1=str(i.id), c2=str(i.choice).encode('string_escape'), c3=str(i.votes))
+        html += radio.format(c1=str(i.id), c2=str(i.name).encode('string_escape'), c3=str(i.count_votes()))
     send = fd.format(corchete_c="}",corchete_o="{", nombre=obj.question, choices=html, c1=obj.background, c2=obj.border_radius, c3=str(str(obj.border_width) + " solid " + str(obj.border_color)), c4=obj.width, c5=obj.height, c6=obj.sub_background, c7=obj.font_family, c8=obj.font_color, c9=obj.padding, c10=obj.width_subblock, c11=obj.height_subblock, c12=obj.width_blocktitle, c13=obj.height_blocktitle, c14=obj.color_title, c15=obj.gradient1, c16=obj.gradient2, c17=obj.id, c18=obj.show_results, c19=obj.size_title, c20=obj.size_block, c21=obj.padding_std_options)
 
     return HttpResponse(send, "text/javascript")

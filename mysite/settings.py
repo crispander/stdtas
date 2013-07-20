@@ -1,5 +1,6 @@
 # Django settings for mysite project.
 import os
+import dj_database_url
 
 # Get absolute path to the project's root directory without the trailing /
 SETTINGS_HOME = os.path.abspath(os.path.dirname(__file__))
@@ -16,21 +17,31 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-#        'NAME': 'dbtwo', 
-#        'USER': 'postgres',
-#        'PASSWORD': '1234',
-#        'HOST': 'localhost',                   
-#    }
-#}
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '{0}/db/bdone'.format(APP_HOME),                    # Or path to database file if using sqlite3.
-    }
-}
+# Parse database configuration from $DATABASE_URL
+DATABASES['default'] =  dj_database_url.config()
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+# DATABASES = {
+   # 'default': {
+       # 'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+       # 'NAME': 'pollandchoice', 
+       # 'USER': 'cristian',
+       # 'PASSWORD': '1234',
+       # 'HOST': 'localhost',                   
+   # }
+# }
+
+# DATABASES = {
+    # 'default': {
+        # 'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        # 'NAME': '{0}/db/bdone'.format(APP_HOME),                    # Or path to database file if using sqlite3.
+    # }
+# }
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.

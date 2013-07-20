@@ -1,7 +1,8 @@
 from tastypie.resources import ModelResource
+from tastypie.authorization import Authorization
 #from django.contrib.auth.models import User
-#from tastypie import fields
-from mysite.polls.models import Poll, Choice
+from tastypie import fields
+from mysite.polls.models import Poll, Choice, Vote
 
 
 #class UserResource(ModelResource):
@@ -19,10 +20,18 @@ class EntryResource(ModelResource):
 
 
 class EntryResource2(ModelResource):
-#    user = fields.ForeignKey(UserResource, 'user')
+    poll = fields.ForeignKey(EntryResource, 'poll')
     class Meta:
         queryset = Choice.objects.all()
         resource_name = 'choice'
-        allowed_methods = ['get']
-#        fields = ['votes']
+        allowed_methods = ['get', 'post']
+        authorization = Authorization()
 
+class EntryResource3(ModelResource):
+    choice = fields.ForeignKey(EntryResource2, 'choice')
+    class Meta:
+        queryset = Vote.objects.all()
+        resource_name = 'vote'
+        allowed_methods = ['get', 'post']
+        authorization = Authorization()
+		
