@@ -59,7 +59,7 @@ function send_poll(){corchete_o}
 
 data= $("#formcrispanderstr").serialize();
 $.ajax({corchete_o}
-	url: "http://www.generadorencuetas.com/polls/{c17}/submit/",
+	url: "http://www.generadorencuestas.com/polls/{c17}/submit/",
 	data: data,
 	type: "GET",
 	success: function(){corchete_o}
@@ -67,7 +67,7 @@ $.ajax({corchete_o}
 			$('.block_std-options_cris small').css('display', 'inline-block');
 		{corchete_c}
 		else if(show=='app'){corchete_o}
-			document.location.href = 'http://www.generadorencuetas.com/polls/{c17}/results/';
+			document.location.href = 'http://www.generadorencuestas.com/polls/{c17}/results/';
 		{corchete_c}
 		$(".button_crispander").css("display", "none");
 		$("input").attr("disabled", "disabled");
