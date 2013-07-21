@@ -1,6 +1,7 @@
 # Django settings for mysite project.
 import os
 
+
 # Get absolute path to the project's root directory without the trailing /
 SETTINGS_HOME = os.path.abspath(os.path.dirname(__file__))
 APP_HOME = os.path.split(SETTINGS_HOME)[0]
