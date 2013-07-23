@@ -1,10 +1,6 @@
 rdb
 mmysite
-rpolls
-rpolls/gen_js
-mstatic/css
-mstatic/images
-rstatic/js
-rtemplates
-rtemplates/admin
-rtemplates/polls
+mmysite/polls
+mmysite/polls/gen_js
+mmysite/static/css
+mmysite/templates/polls

@@ -43,26 +43,7 @@ textarea{
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<!--
-<h1>{{ poll.question }}</h1>
-
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
-<form action="/polls/{{ poll.id }}/submit/" method="post">
-{% csrf_token %}
-{% for choice in poll.choice_set.all %}
-<div class="block_std">
-    {{ forloop.counter }}&nbsp;<input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-    <label for="choice{{ forloop.counter }}">{{ choice.choice }}</label>
-</div>
-{% endfor %}
-<br/>
-<input type="submit" value="Vote" />
-<p>{{ choice.choice }}</p>
-</form>
--->
-<!--<style>.block_std-options_cris{	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d6e1e8), color-stop(1, #b6b7b8) );background:-moz-linear-gradient( center top, #d6e1e8 5%, #b6b7b8 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d6e1e8', endColorstr='#b6b7b8');background-color:#d6e1e8;border:1px solid #adadad;display:block;}</style>-->
-<script id="generator_script_crispander" src="http://www.generadorencuestas.com/render/poll/{{ poll.id }}/" type="text/javascript"></script>
+<script id="generator_script_crispander" src="http://localhost:8000/render/poll/{{ poll.id }}/" type="text/javascript"></script>
 
 
 <br />
@@ -109,7 +90,7 @@ textarea{
 </tr>
 <tr>
 	<td colspan="4" align="center">
-		<div class="fb-comments" data-href="https://www.generadorencuestas.com/polls/{{ poll.id }}" data-width="470" data-num-posts="10"></div>
+		<!-- <div class="fb-comments" data-href="https://www.generadorencuestas.com/polls/{{ poll.id }}" data-width="470" data-num-posts="10"></div> -->
 	</td>
 </tr>
 </table>

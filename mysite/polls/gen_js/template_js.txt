@@ -14,8 +14,9 @@ $(function(){corchete_o}
    
    $('#preview #name_app').css({corchete_o}'display':'block', 'position':'absolute', 'padding':'1px 5px', 'text-align':'center', 'font-family':'calibri, verdana, arial', 'bottom':'3px', 'left':'20%', 'width': '60%', 'font-size':'0.70em', 'background':'#000', 
 	'color':'#FFF', 'cursor':'pointer', 'border-radius':'5px'{corchete_c});
-
+	
    $('#preview #preview_question').css({corchete_o}	
+		'display': 'block',
 		'width':'{c12}',
 		'height': '{c13}',
 		'overflow':'auto',
@@ -25,14 +26,17 @@ $(function(){corchete_o}
 	{corchete_c});
 	
    $('#subblock').css({corchete_o}	
-	'border':'1px solid silver', 
+    'display': 'block',
 	'width':'{c10}',
-	'height': '{c11}', 
-
+	'height':'{c11}',
 	'margin':'auto',
 	'background': '{c6}',
 	'overflow':'auto'
 	{corchete_c});
+	
+	value_size_sublock = $("#preview").css("height").split("px")[0];
+	value_size_sublock = ( parseInt(value_size_sublock)  *  parseInt('{c11}'.split("%")[0])) / 100;
+	$("#subblock").css("height", value_size_sublock + "px");
 	
 	$('.block_std-options_cris small').css({corchete_o}
 

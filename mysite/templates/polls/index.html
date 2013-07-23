@@ -7,7 +7,10 @@
 	
 
 <div id="contenedor_principal">
-	<h3>Muro de encuestas generadas</h3>
+	<h3>Muro de encuestas generadas</h3> 
+	<div>
+		<input type="text" name="fieldcampodearch" />
+	</div>
     <div id="content">
 	   {% for poll in polls %}
 			<div class="block_std"><a href="/polls/{{ poll.id }}/">{{ poll.question }}</a>
@@ -20,7 +23,10 @@
     <label>powered by EncuestasSociales</label>
 	</div>
 	<br>
-
+	
+	<div>
+		1 | 2 | 2 | 3 | 4 | 5 | 6 mas ...
+	</div>
 </div>
 
 {% endblock %}

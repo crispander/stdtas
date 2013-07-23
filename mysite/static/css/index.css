@@ -9,14 +9,14 @@ text-align:left;
 }
 
 #contenedor_principal{
-box-shadow:0 0 2px 2px black;
-border:7px solid #596169;
-border-radius:10px;
-width:600px;
-margin:40px auto 30px auto;
-background:#717E8C;
-padding:0px;
-text-align:center;
+	box-shadow:0 0 2px 2px black;
+	border:7px solid #596169;
+	border-radius:10px;
+	width:600px;
+	margin:40px auto 30px auto;
+	background:#717E8C;
+	padding:0px;
+	text-align:left;
 }
 
 .bloque_index a{

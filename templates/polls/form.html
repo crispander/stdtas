@@ -12,7 +12,6 @@
 	
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 	<style id="degrade"></style>
-	<style id="padding_options"></style>
 	<script>
 	var options_array = [];
 	var type_poll = "radio";
@@ -167,23 +166,6 @@
 		});
 		$( "#padding" ).val( $( "#slider-padding" ).slider( "value" ) + "px");
 		
-		//font-size
-		$("#font_size_block").spinner({
-			max: 30,
-			min: 7,
-			start: 12,
-			change: set_font_block,
-			stop: set_font_block
-		});
-		$("#font_size_title").spinner({
-			max: 40,
-			min: 7,
-			start: 12,
-			change: set_font_title,
-			stop: set_font_title
-		});
-		
-		
 		//Inicizlizacion de valores predeterminados
 		$("#fondo").css("background-color", "#0f169c");
 			$("#fondo").ColorPickerSetColor("#0f169c");
@@ -314,20 +296,6 @@
 	  });
 	  $( "#height_blocktitle" ).val( $( "#slider_height_blocktitle" ).slider( "value" ) + "%");
 	  
-	  
-	 //padding opcions subblock
-	  $( "#slider_block_std_options" ).slider({
-      range: "max",
-	  min:0,
-      max: 40,
-      value: 0,
-      slide: function( event, ui ){
-		$( "#block_std_options" ).val( ui.value + "px");
-		$(".block_std-options_cris").css("padding", ui.value  + "px" );
-		$("#padding_options").html(".block_std-options_cris{padding: "+ui.value+"px }");
-	  },
-	  });
-	  $( "#block_std_options" ).val( $( "#slider_block_std_options" ).slider( "value" ) + "px");
 	});
 
 	</script>
@@ -483,29 +451,13 @@
 							<div id="slider_height_blocktitle"></div>
 						</td>
 
-			<!-- padding subblock espacio entre bloques -->	
 						<td>
-							<p>
-							  <label for="padding_block_std_optionss">Espacio en bloques:</label>
-							  <input type="text" id="block_std_options" name="block_std_options" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
-							</p>
-							<div id="slider_block_std_options"></div>
 						</td>
 					</tr>
 				</table>
 				
 				
 				<table width="100%">
-					<tr>
-						<td>
-							<label>Tamaño letra titulo</label><br />
-							<input type="text" name="font_size_title" value="19" id="font_size_title" />
-						</td>
-						<td>
-							<label>Tamaño letra bloque</label><br />
-							<input type="text" name="font_size_block" value="12" id="font_size_block" />
-						</td>
-					</tr>
 					<tr>
 						<td>
 							<label>Tipo de Letra</label><br />

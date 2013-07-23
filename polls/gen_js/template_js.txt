@@ -1,7 +1,6 @@
-var show = null;
 $(function(){corchete_o}
    html = "<div id='preview'><div id='preview_question'>&iquest; {nombre} ?</div>";
-   html += '<form action="http://localhost:8000/polls/{c17}/submit/" method="get" id="formcrispanderstr" onsubmit="return send_poll()">';
+   html += '<form action="http://localhost:8000/polls/{c17}/submit/" method="get">';
    html += "<div id='subblock'>";
    {choices}
    html += "</div><input type='submit' class='button_crispander ' value='enviar' /><a id='name_app' href='http://localhost:8000'>&copy;Powered&nbsp;by&nbsp;crispander</a></div>";
@@ -10,7 +9,7 @@ $(function(){corchete_o}
    
    $('head').append('<style id="degrade"></style>');
    $('#preview').css({corchete_o}'background-color': '{c1}', 'border-radius':'{c2}', 'border': '{c3}', 'width': '{c4}', 'height': '{c5}', 'font-family': '{c7}', 'color': '{c8}', 'padding': '{c9}',
-   'position':'relative'{corchete_c});
+   'margin':'auto', 'margin-top':'40px', 'position':'relative'{corchete_c});
    
    $('#preview #name_app').css({corchete_o}'display':'block', 'position':'absolute', 'padding':'1px 5px', 'text-align':'center', 'font-family':'calibri, verdana, arial', 'bottom':'3px', 'left':'20%', 'width': '60%', 'font-size':'0.70em', 'background':'#000', 
 	'color':'#FFF', 'cursor':'pointer', 'border-radius':'5px'{corchete_c});
@@ -44,35 +43,10 @@ $(function(){corchete_o}
 	{corchete_c});
 
 	
-	$('#degrade').html(".block_std-options_cris{corchete_o}	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, {c15}), color-stop(1, {c16}) );background:-moz-linear-gradient( center top, {c15} 5%, {c16} 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='{c15}', endColorstr='{c16}');background-color:{c15};border:1px solid #adadad;display:block;padding:{c21};{corchete_c}");
+	$('#degrade').html(".block_std-options_cris{corchete_o}	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, {c15}), color-stop(1, {c16}) );background:-moz-linear-gradient( center top, {c15} 5%, {c16} 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='{c15}', endColorstr='{c16}');background-color:{c15};border:1px solid #adadad;display:block;{corchete_c}");
 	$('#degrade').append(".button_crispander {corchete_o} box-shadow:inset 0px 1px 0px 0px #ffffff; -moz-box-shadow:inset 0px 1px 0px 0px #ffffff; -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) ); background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% ); filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf'); background-color:#ededed; -moz-border-radius:6px; -webkit-border-radius:6px; border-radius:6px; border:1px solid #dcdcdc; display:block; color:#777777; font-family:arial; font-size:15px; font-weight:bold; margin:auto; width:50%; margin-top:10px; cursor:pointer; padding:3px 0; text-decoration:none; text-align:center;{corchete_c}");
 
 	show = '{c18}';
 	if(show != "si")
 		$('.block_std-options_cris small').css('display', 'none');
-		
-	$("#preview #subblock").css("font-size", {c20} + "px");
-	$("#preview #preview_question").css("font-size", {c19} + "px");
 {corchete_c});
-
-function send_poll(){corchete_o}
-
-data= $("#formcrispanderstr").serialize();
-$.ajax({corchete_o}
-	url: "http://localhost:8000/polls/{c17}/submit/",
-	data: data,
-	type: "GET",
-	success: function(){corchete_o}
-		if(show=='after'){corchete_o}
-			$('.block_std-options_cris small').css('display', 'inline-block');
-		{corchete_c}
-		else if(show=='app'){corchete_o}
-			document.location.href = '/polls/{c17}/results/';
-		{corchete_c}
-		$(".button_crispander").css("display", "none");
-		$("input").attr("disabled", "disabled");
-	{corchete_c}
-{corchete_c});
-
-return false;
-{corchete_c}

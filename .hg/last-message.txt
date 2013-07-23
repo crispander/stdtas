@@ -1,1 +1,1 @@
-ya se almacenan registros en la base de datos
+se haxe la parte de mostrar resultados
