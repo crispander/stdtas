@@ -1,1 +1,1 @@
-se haxe la parte de mostrar resultados
+se añade info actualizada

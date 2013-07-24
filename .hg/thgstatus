@@ -1,6 +1,9 @@
+m
 rdb
 mmysite
 mmysite/polls
-mmysite/polls/gen_js
 mmysite/static/css
 mmysite/templates/polls
+rstatic/admin/js
+mstatic/css
+rstatic/js

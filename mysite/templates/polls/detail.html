@@ -43,8 +43,23 @@ textarea{
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<script id="generator_script_crispander" src="http://localhost:8000/render/poll/{{ poll.id }}/" type="text/javascript"></script>
-
+<table width="100%">
+	<tr>
+		<td width="10%">
+			Anterior:<br />
+		      <a href="/polls/{{ before.pk }}">{{ before.question }}</a>
+		</td>
+		
+		<td width="80%">
+			<script id="generator_script_crispander" src="http://www.generadorencuestas/render/poll/{{ poll.id }}/" type="text/javascript"></script>
+		</td>
+		
+		<td width="10%">
+			Siguiente: <br />
+		        <a href="/polls/{{ after.pk }}">{{ after.question }}</a>
+		</td>
+	</tr>
+</table>
 
 <br />
 <br />
@@ -90,7 +105,7 @@ textarea{
 </tr>
 <tr>
 	<td colspan="4" align="center">
-		<!-- <div class="fb-comments" data-href="https://www.generadorencuestas.com/polls/{{ poll.id }}" data-width="470" data-num-posts="10"></div> -->
+		<div class="fb-comments" data-href="https://www.generadorencuestas.com/polls/{{ poll.id }}" data-width="470" data-num-posts="10"></div>
 	</td>
 </tr>
 </table>

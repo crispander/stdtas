@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, render_to_response
+from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import *
 from mysite.polls.models import *
@@ -17,6 +18,32 @@ class ViewIndex(ListView):
     template_name = 'polls/index.html'
     queryset = Poll.objects.order_by('-pub_date')
     context_object_name = 'polls'
+    
+    def get_context_data(self, **kwargs):
+        context = super(ViewIndex, self).get_context_data(**kwargs)
+        obj = Poll.objects.all()
+
+        try:
+            search =  self.request.REQUEST["search"]
+        except KeyError:
+            action = True
+        else:
+            action = False
+            obj = obj.filter(question__icontains = search)
+            
+        p = Paginator(obj, 5)
+        
+        try:
+            pagecurrent = self.request.REQUEST["page"]
+        except KeyError:
+            pagecurrent = 1
+            
+
+        context["pollspaginator"] = p.page(pagecurrent)
+        context["page"] = pagecurrent
+        context["paginator"] = p
+
+        return context
 
 class ViewForm(TemplateView):
     template_name = 'polls/form.html'
@@ -25,6 +52,23 @@ class ViewDetail(DetailView):
     template_name = 'polls/detail.html'
     model = Poll
     context_object_name = 'poll'
+ 
+    def get_context_data(self, **kwargs):
+        context = super(ViewDetail, self).get_context_data(**kwargs)
+        try:
+            before = Poll.objects.get(id__exact = int(self.kwargs["pk"]) - 1)
+        except Poll.DoesNotExist:
+            before = False
+            
+        try:
+            after = Poll.objects.get(id__exact = int(self.kwargs["pk"]) + 1)
+        except Poll.DoesNotExist:
+            after = False
+            
+        context["before"] =  before
+        context["after"] =  after
+        
+        return context
 
 
 class ViewResults(DetailView):
