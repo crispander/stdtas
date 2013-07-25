@@ -1,12 +1,12 @@
 var show = null;
 $(function(){corchete_o}
    html = "<div id='preview'><div id='preview_question'>&iquest; {nombre} ?</div>";
-   html += '<form action="http://www.generadoencuestas.com/api/v1/choice/" method="post" id="formcrispanderstr" onsubmit="return send_poll()">';
+   html += '<form action="http://www.generadoencuestas.com/api/v1/choice/" method="post" id="formcrispanderstr_{c17}" onsubmit="return send_poll()">';
    html += "<div id='subblock'>";
    {choices}
    html += "</div><input type='submit' class='button_crispander ' value='enviar' /><a id='name_app' href='http://www.generadorencuestas.com'>&copy;Powered&nbsp;by&nbsp;crispander</a></div>";
    html += "</form>";
-   $(html).insertAfter('#generator_script_crispander');
+   $(html).insertAfter('#generator_script_crispander_{c17}');
    
    $('head').append('<style id="degrade"></style>');
    $('#preview').css({corchete_o}'background-color': '{c1}', 'border-radius':'{c2}', 'border': '{c3}', 'width': '{c4}', 'height': '{c5}', 'font-family': '{c7}', 'color': '{c8}', 'padding': '{c9}',
@@ -59,9 +59,9 @@ $(function(){corchete_o}
 	$("#preview #preview_question").css("font-size", {c19} + "px");
 {corchete_c});
 
-function send_poll(){corchete_o}
+function send_poll(id){corchete_o}
 
-data= $("#formcrispanderstr").serialize();
+data= $("#formcrispanderstr_" + id).serialize();
 $.ajax({corchete_o}
 	url: "http://www.generadorencuestas.com/polls/{c17}/submit/",
 	data: data,
