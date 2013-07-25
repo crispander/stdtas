@@ -43,6 +43,7 @@ class Poll(models.Model):
     gradient1 = models.CharField(max_length=200, null=True, blank=True)
     gradient2 = models.CharField(max_length=200, null=True, blank=True)
     etiquetas = models.CharField(max_length=200, null=True, blank=True)
+    etiquetas2 = models.CharField(max_length=200, null=True, blank=True)
 
     def __unicode__(self):
         return self.question
