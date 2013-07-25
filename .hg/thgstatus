@@ -1,3 +1,9 @@
+m.git
+m.git/logs
+m.git/logs/refs/heads
+m.git/logs/refs/remotes/heroku
+m.git/refs/heads
+m.git/refs/remotes/heroku
 rdb
 mmysite
 mmysite/polls

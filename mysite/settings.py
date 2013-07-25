@@ -139,7 +139,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'mysite.polls',
     'tastypie',
-    'south'
+    #'south'
 )
 
 # A sample logging configuration. The only tangible logging
