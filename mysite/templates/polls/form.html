@@ -152,6 +152,17 @@
 			load_options();
 		});
 		
+		$("#etiquetas").keyup(function(){
+			
+			val = $("#etiquetas").val();
+			val = val.split(",")
+			html = "";
+			for(i=0;val.length>i;i++){
+				html += " <a class='bl_etiquetas'>&raquo;&nbsp;"+ val[i] +"</a> ";
+			}
+			$("#content_etiquetas").html(html);
+		});
+		
 		$("#options").html("ejemplo 1 \nejemplo 2");
 		load_options();
 		
@@ -397,6 +408,10 @@
 				<label class="title_option">Opciones(escriba las opciones en lineas diferentes): </label><br />
 				
 				<textarea type="text" name="options" id="options"></textarea><br />
+				
+				<label class="title_option">Etiquetas: </label>&nbsp;
+				<input type="text" id="etiquetas" name="etiquetas" /><br />
+				<small>Escriba las etiquetas separadas por coma ejm. carros, deportes, maquillaje</small>
 
 				
 				<table width="80%">
@@ -552,8 +567,10 @@
 		<td>
 			<h3>Preview</h3>
 			<div id="preview">
+				<div id="content_etiquetas"></div>
 				<div id="preview_question">¿Escriba aqui la pregunta?</div>
 				<div id="subblock">
+				
 				
 				</div>
 				<a class="button_crispander" >Enviar</a>

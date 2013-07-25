@@ -5,14 +5,14 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User)
+# class UserProfile(models.Model):
+    # user = models.OneToOneField(User)
 
-    def __unicode__(self):
-        return self.user.username
+    # def __unicode__(self):
+        # return self.user.username
         
-    class Meta:
-        verbose_name_plural = "user profile"
+    # class Meta:
+        # verbose_name_plural = "user profile"
 
 class Poll(models.Model):
     question = models.CharField(max_length=200)
@@ -42,6 +42,7 @@ class Poll(models.Model):
     padding_std_options = models.CharField(max_length=200, null=True, blank=True)
     gradient1 = models.CharField(max_length=200, null=True, blank=True)
     gradient2 = models.CharField(max_length=200, null=True, blank=True)
+    etiquetas = models.CharField(max_length=200, null=True, blank=True)
 
     def __unicode__(self):
         return self.question
@@ -114,10 +115,10 @@ class Contact(models.Model):
         ordering = ["-date"]
 
 
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        UserProfile.objects.create(user=instance)
+# def create_user_profile(sender, instance, created, **kwargs):
+    # if created:
+        # UserProfile.objects.create(user=instance)
 
-post_save.connect(create_user_profile, sender=User)
+#post_save.connect(create_user_profile, sender=User)
     
 
