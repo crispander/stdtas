@@ -14,6 +14,7 @@ mmysite/static/js
 mmysite/templates/polls
 rpolls
 rpolls/gen_js
+mstatic/css
 rstatic/js
 rtemplates
 rtemplates/admin
