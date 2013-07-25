@@ -133,6 +133,10 @@
 			}
 		});
 		
+		//mostrar resultados de votaciones
+		$("#landscape").change(function(){
+			load_options();
+		});
 		
 		//mostrar pregunta
 		$("#question").keyup(function(){
@@ -558,6 +562,18 @@
 							<option value="si">Si</option>
 							<option value="no">No</option>
 							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="mostrar_resultados" class="title_option">opciones ¿horizontal o vertical?</label><br />
+							<select id="landscape" name="landscape">
+							<option value="h" selected="selected">Horizontal</option>
+							<option value="v" >vertical</option>
+							</select>
+						</td>
+						<td>
+							&nbsp;
 						</td>
 					</tr>
 				</table>

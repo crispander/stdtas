@@ -12,18 +12,38 @@ function load_options(){
 	value = $("#options").val();
 	value = value.split("\n");
 	html = "";
-		for(i=0;value.length>i;i++){
-			if(type_poll == "radio"){
-				html += "<div class='block_std-options_cris' ><input type='radio' 'name='select'> " + value[i] + "<small>votes: 0</small></div>";
+		landscape = $("#landscape").val();
+		if(landscape == "h"){
+			for(i=0;value.length>i;i++){
+				if(type_poll == "radio"){
+					html += "<div class='block_std-options_cris' ><input type='radio' 'name='select'> " + value[i] + "<small>votes: 0</small></div>";
+				}
+				else if(type_poll == "checkbox"){
+					html += "<div class='block_std-options_cris' ><input type='checkbox' 'name='select'> " + value[i] + "<small>votes: 0</small></div>";
+				}
+				else if(type_poll == "textarea"){
+					html += "<textarea rows='4'></textarea>";
+					break;
+				}
+				//options_array.push(value[i]);
 			}
-			else if(type_poll == "checkbox"){
-				html += "<div class='block_std-options_cris' ><input type='checkbox' 'name='select'> " + value[i] + "<small>votes: 0</small></div>";
+		}else{
+			//size = ($("#subblock").width() / value.length) - 3;
+			size = (97 / value.length);
+
+			for(i=0;value.length>i;i++){
+				if(type_poll == "radio"){
+					html += "<div style='height:98%;float:left;width:"+ size +"%' class='block_std-options_cris' ><input type='radio' 'name='select'> " + value[i] + "<small>votes: 0</small></div>";
+				}
+				else if(type_poll == "checkbox"){
+					html += "<div style='height:98%;float:left;width:"+ size +"%' class='block_std-options_cris' ><input type='checkbox' 'name='select'> " + value[i] + "<small>votes: 0</small></div>";
+				}
+				else if(type_poll == "textarea"){
+					html += "<textarea rows='4'></textarea>";
+					break;
+				}
+				//options_array.push(value[i]);
 			}
-			else if(type_poll == "textarea"){
-				html += "<textarea rows='4'></textarea>";
-				break;
-			}
-			//options_array.push(value[i]);
 		}
 	$("#subblock").html(html);
 }

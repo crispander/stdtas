@@ -2,7 +2,7 @@ var show = null;
 $(function(){corchete_o}
 			
    html = "<div id='preview'><div id='content_etiquetas'></div><div id='preview_question'>&iquest; {nombre} ?</div>";
-   html += '<form action="http://www.generadoencuestas.com/api/v1/choice/" method="post" id="formcrispanderstr_{c17}" onsubmit="return send_poll()">';
+   html += '<form action="http://www.generadoencuestas.com/api/v1/choice/" method="post" id="formcrispanderstr_{c17}" onsubmit="return send_poll({c17})">';
    html += "<div id='subblock'>";
    {choices}
    html += "</div><input type='submit' class='button_crispander ' value='enviar' /><a id='name_app' href='http://www.generadorencuestas.com'>&copy;Powered&nbsp;by&nbsp;crispander</a></div>";
