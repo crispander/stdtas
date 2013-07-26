@@ -1,1 +1,1 @@
-se añade la app a heroku actualizada
+se añade nueva configuracion al repostorio de mercurial

@@ -9,7 +9,7 @@ function refreshconf2(){
 }
 
 function load_options(){
-	value = $("#options").val();
+	value = $("#mytextarea").val();
 	value = value.split("\n");
 	html = "";
 		landscape = $("#landscape").val();
@@ -169,3 +169,113 @@ function logout(){
      js.src = "//connect.facebook.net/en_US/all.js";
      ref.parentNode.insertBefore(js, ref);
    }(document));
+
+   
+jQuery.fn.extend({
+insertAtCaret: function(myValue){
+  return this.each(function(i) {
+    if (document.selection) {
+      //For browsers like Internet Explorer
+      this.focus();
+      var sel = document.selection.createRange();
+      sel.text = myValue;
+      this.focus();
+    }
+    else if (this.selectionStart || this.selectionStart == '0') {
+      //For browsers like Firefox and Webkit based
+      var startPos = this.selectionStart;
+      var endPos = this.selectionEnd;
+      var scrollTop = this.scrollTop;
+      this.value = this.value.substring(0, startPos)+myValue+this.value.substring(endPos,this.value.length);
+      this.focus();
+      this.selectionStart = startPos + myValue.length;
+      this.selectionEnd = startPos + myValue.length;
+      this.scrollTop = scrollTop;
+    } else {
+      this.value += myValue;
+      this.focus();
+    }
+  });
+}
+});
+
+$(function(){
+    $( "#dialog-form" ).dialog({
+      autoOpen: false,
+      height: 600,
+      width: 700,
+      modal: true,
+      buttons: {
+        "Ingresar Imagen": function() {
+          im = $("#imagen_input").val();
+		  size = $("#form_image_input").val();
+		  if(im != ""){
+			$('#mytextarea').insertAtCaret("<img src='" +im+ "' height='"+size+"' />");
+			$( "#dialog-form" ).dialog( "close" );
+		  }
+		  },
+      Cancel: function() {
+          $( this ).dialog( "close" );
+        }
+      },
+      close: function() {
+      }
+    });
+	
+	
+	  $( "#create-image" )
+		  .button({
+		    icons: {
+			primary: "ui-icon-image"
+			},
+			text: false
+		  })
+		  .click(function() {
+			$( "#dialog-form" ).dialog( "open" );
+		  });
+	  
+	  $( "#create-br" )
+		  .button({
+		    icons: {
+			primary: "ui-icon-carat-2-e-w"
+			},
+			text: false
+		  })
+		  .click(function() {
+			$('#mytextarea').insertAtCaret("<br />");
+          });
+	  
+	  $( "#create-b" )
+		  .button()
+		  .click(function() {
+			if(estado_bold){
+				$('#mytextarea').insertAtCaret("<b>");
+				estado_bold = false;
+				}
+			else{
+				$('#mytextarea').insertAtCaret("</b>");
+				estado_bold = true;
+				}
+          });
+		  
+$("#imagen_input").keyup(function(){
+	ima = $("#imagen_input").val();
+	html = "<img src='"+ima+"' height='' />";
+	
+	$("#preview_image").html(html);
+});
+
+	//js height
+	  $( "#slider_form_image_input" ).slider({
+      range: "max",
+	  min:10,
+      max: 200,
+      value: 40,
+      slide: function( event, ui ){
+		$( "#form_image_input" ).val( ui.value);
+		$("#preview_image img").css("height", ui.value );
+	  },
+	  });
+	  $( "#form_image_input" ).val( $( "#slider_form_image_input" ).slider( "value" ));
+
+});

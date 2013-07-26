@@ -17,6 +17,7 @@
 	var options_array = [];
 	var type_poll = "radio";
 	var id_poll = null;
+	var estado_bold = true;
 	$(document).ready(function(){
 	$("#degrade").html(".block_std-options_cris{	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d6e1e8), color-stop(1, #b6b7b8) );background:-moz-linear-gradient( center top, #d6e1e8 5%, #b6b7b8 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d6e1e8', endColorstr='#b6b7b8');background-color:#d6e1e8;border:1px solid #adadad;display:block;}");
 	
@@ -152,7 +153,7 @@
 		});
 		
 		//alamcenar y mostrar opciones
-		$("#options").keyup(function(){
+		$("#mytextarea").keyup(function(){
 			load_options();
 		});
 		
@@ -167,7 +168,7 @@
 			$("#content_etiquetas").html(html);
 		});
 		
-		$("#options").html("ejemplo 1 \nejemplo 2");
+		$("#mytextarea").html("ejemplo 1 \nejemplo 2");
 		load_options();
 		
 		//padding
@@ -409,9 +410,29 @@
 				
 				<input type="text" name="question" id="question"><br />
 				 <!-- opciones -->
-				<label class="title_option">Opciones(escriba las opciones en lineas diferentes): </label><br />
-				
-				<textarea type="text" name="options" id="options"></textarea><br />
+
+				<table>
+					<tr>
+						<td rowspan="3">
+							<textarea rows="8" cols="40" name="options" id="mytextarea"></textarea>
+						</td>
+						<td>
+							<button id="create-image">Imagen</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button id="create-br">salto de linea</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button id="create-b"><b style="font-size:0.5em;">N</b></button>
+						</td>
+					</tr>
+				</table>
+				<br />
+
 				
 				<label class="title_option">Etiquetas: </label>&nbsp;
 				<input type="text" id="etiquetas" name="etiquetas" /><br />
@@ -598,7 +619,30 @@
 	</tr>
 	</table>
 	
-			<BR />
+	<!-- cuadro de dialogo -->
+		<div id="dialog-form" title="ingresar Imagen">
+		  <p class="validateTips">El campo de abajo es obligatorio.</p>
+		 
+		  <form>
+		  <fieldset>
+			<label for="imagen">Imagen</label>
+			<input type="text" name="imagen" id="imagen_input" class="text ui-widget-content ui-corner-all" />
+			
+			<p>
+			  <label for="form_image_input" class="title_option">Alto:</label>
+			  <input type="text" name="height" id="form_image_input" style="border: 0; color: #f6931f; font-weight: bold;width:80px;" />
+			</p>
+			<div id="slider_form_image_input"></div>
+								
+		  </fieldset>
+		  </form>
+		  
+		  <div id="preview_image">
+		  
+		  </div>
+		</div>
+	
+	<BR />
 	<button type="submit" class="button_submit">GENERAR ENCUESTA</button>
 </form>
 
@@ -616,7 +660,7 @@
 
 </div>
 
-	</div>
+</div>
 
 
 <div id="bottom">

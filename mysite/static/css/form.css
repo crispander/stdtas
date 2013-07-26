@@ -81,13 +81,8 @@ html, body{
 
 
 #medium textarea[name=options]{
-	border:1px solid #A65353;
-	width:90%;
-	height:80px;
 	resize:none;
-	padding:10px 5px;
 	outline:none;
-	font-size:1.2em;
 }
 
 #bottom{
