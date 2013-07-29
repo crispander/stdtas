@@ -1,1 +1,1 @@
-se añade nueva configuracion al repostorio de mercurial
+se añadela confihfg

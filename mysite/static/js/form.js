@@ -211,6 +211,8 @@ $(function(){
 		  size = $("#form_image_input").val();
 		  if(im != ""){
 			$('#mytextarea').insertAtCaret("<img src='" +im+ "' height='"+size+"' />");
+			$( "#imagen_input" ).val("");
+			load_options();
 			$( "#dialog-form" ).dialog( "close" );
 		  }
 		  },
@@ -243,6 +245,7 @@ $(function(){
 		  })
 		  .click(function() {
 			$('#mytextarea').insertAtCaret("<br />");
+			load_options();
           });
 	  
 	  $( "#create-b" )
@@ -255,6 +258,7 @@ $(function(){
 			else{
 				$('#mytextarea').insertAtCaret("</b>");
 				estado_bold = true;
+				load_options();
 				}
           });
 		  
