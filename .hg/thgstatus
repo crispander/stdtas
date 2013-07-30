@@ -1,5 +1,5 @@
 rdb
-mmysite
+mmysite/templates/polls
 rpolls
 rpolls/gen_js
 rstatic/js

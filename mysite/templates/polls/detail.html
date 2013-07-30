@@ -46,8 +46,10 @@ textarea{
 <table width="100%">
 	<tr>
 		<td width="10%">
+		{% if before %}
 			Anterior:<br />
 		      <a href="/polls/{{ before.pk }}">{{ before.question }}</a>
+		{% endif %}
 		</td>
 		
 		<td width="80%">
@@ -55,8 +57,10 @@ textarea{
 		</td>
 		
 		<td width="10%">
+			{% if after %}
 			Siguiente: <br />
 		        <a href="/polls/{{ after.pk }}">{{ after.question }}</a>
+			{% endif %}
 		</td>
 	</tr>
 </table>

@@ -10,13 +10,14 @@ $(function(){corchete_o}
    $(html).insertAfter('#generator_script_crispander_{c17}');
    
    etiquetas = "{c22}";
-	val = etiquetas.split(",")
-	html = "";
-	for(i=0;val.length>i;i++){corchete_o}
-		html += " <a class='bl_etiquetas'>&raquo;&nbsp;"+ val[i] +"</a> ";
+   if(etiquetas != ""){corchete_o}
+		val = etiquetas.split(",")
+		html = "";
+		for(i=0;val.length>i;i++){corchete_o}
+			html += " <a class='bl_etiquetas'>&raquo;&nbsp;"+ val[i] +"</a> ";
+		{corchete_c}
+		$("#content_etiquetas").html(html);
 	{corchete_c}
-	$("#content_etiquetas").html(html);
-
 
 	$("#content_etiquetas").css({corchete_o}
 		'width':'80%',
