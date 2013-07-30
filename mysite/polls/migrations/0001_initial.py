@@ -39,6 +39,7 @@ class Migration(SchemaMigration):
             ('gradient1', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
             ('gradient2', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
             ('etiquetas', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
+            ('landscape', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
         ))
         db.send_create_signal(u'polls', ['Poll'])
 
@@ -46,7 +47,7 @@ class Migration(SchemaMigration):
         db.create_table(u'polls_choice', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('poll', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['polls.Poll'])),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=200)),
+            ('name', self.gf('django.db.models.fields.TextField')()),
             ('votes', self.gf('django.db.models.fields.IntegerField')()),
         ))
         db.send_create_signal(u'polls', ['Choice'])
@@ -126,7 +127,7 @@ class Migration(SchemaMigration):
         u'polls.choice': {
             'Meta': {'ordering': "['-votes']", 'object_name': 'Choice'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'name': ('django.db.models.fields.TextField', [], {}),
             'poll': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['polls.Poll']"}),
             'votes': ('django.db.models.fields.IntegerField', [], {})
         },
@@ -155,6 +156,7 @@ class Migration(SchemaMigration):
             'height_blocktitle': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'height_subblock': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'landscape': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'number_votes': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'padding': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'padding_std_options': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
