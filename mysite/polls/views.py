@@ -124,17 +124,17 @@ def create_poll(request):
     """creacion de una encuesta"""
     #main
     try:
-        type = request.GET['type_poll']
+        type = request.POST['type_poll']
     except KeyError:
         response = simplejson.dumps({"response": "faul", "cod_error": "type_poll"})
         return HttpResponse(response, "text/json")
     try:
-        question = request.GET['question']
+        question = request.POST['question']
     except KeyError:
         response = simplejson.dumps({"response": "faul", "cod_error": "question"})
         return HttpResponse(response, "text/json")
     try:
-        options = request.GET['options']
+        options = request.POST['options']
     except KeyError:
         response = simplejson.dumps({"response": "faul", "cod_error": "options"})
         return HttpResponse(response, "text/json")
@@ -142,101 +142,101 @@ def create_poll(request):
     #secumdarias
     #colores
     try:
-        fondo = request.GET['fondo']
+        fondo = request.POST['fondo']
     except KeyError:
         fondo = "#FFF"
     try:
-        borde = request.GET['borde']
+        borde = request.POST['borde']
     except KeyError:
         borde = "#dcdcdc"
     try:
-        subfondo = request.GET['subfondo']
+        subfondo = request.POST['subfondo']
     except KeyError:
         subfondo = "#FFF"
     try:
-        letra = request.GET['font']
+        letra = request.POST['font']
     except KeyError:
         letra = "#000"
     try:
-        letra_subblock = request.GET['font_subblock']
+        letra_subblock = request.POST['font_subblock']
     except KeyError:
         letra_subblock= "#000"
     #font
     try:
-        font_style = request.GET['font_style']
+        font_style = request.POST['font_style']
     except KeyError:
         font_style = "arial"
     #
     try:
-        borde_visible = request.GET['borde_visible']
+        borde_visible = request.POST['borde_visible']
     except KeyError:
         borde_visible = "si"
     try:
-        mostrar_resultados = request.GET['mostrar_resultados']
+        mostrar_resultados = request.POST['mostrar_resultados']
     except KeyError:
         mostrar_resultados = "si"
     try:
-        width = request.GET['width']
+        width = request.POST['width']
     except KeyError:
         width = "300px"
     try:
-        height = request.GET['height']
+        height = request.POST['height']
     except KeyError:
         height = "300px"
     try:
-        border_width = request.GET['border_width']
+        border_width = request.POST['border_width']
     except KeyError:
         border_width = "300px"
     try:
-        border_radius = request.GET['border_radius']
+        border_radius = request.POST['border_radius']
     except KeyError:
         border_radius = "10%"
     try:
-        padding = request.GET['padding']
+        padding = request.POST['padding']
     except KeyError:
         padding = "10px"
     try:
-        width_subblock = request.GET['width_subblock']
+        width_subblock = request.POST['width_subblock']
     except KeyError:
         width_subblock = "80%"
     try:
-        height_subblock = request.GET['height_subblock']
+        height_subblock = request.POST['height_subblock']
     except KeyError:
         height_subblock = "50%"
     try:
-        width_blocktitle = request.GET['width_blocktitle']
+        width_blocktitle = request.POST['width_blocktitle']
     except KeyError:
         width_blocktitle = "80%"
     try:
-        height_blocktitle = request.GET['height_blocktitle']
+        height_blocktitle = request.POST['height_blocktitle']
     except KeyError:
         height_blocktitle = "30%"
     try:
-        gradient1= request.GET['gradient1']
+        gradient1= request.POST['gradient1']
     except KeyError:
         gradient1 = "#d6e1e8"
     try:
-        gradient2 = request.GET['gradient2']
+        gradient2 = request.POST['gradient2']
     except KeyError:
         gradient2= "#b6b7b9"
     try:
-        font_size_title = request.GET['font_size_title']
+        font_size_title = request.POST['font_size_title']
     except KeyError:
         font_size_title= "14"
     try:
-        font_size_block = request.GET['font_size_block']
+        font_size_block = request.POST['font_size_block']
     except KeyError:
         font_size_block = "14"
     try:
-        padding_std_options = request.GET['block_std_options']
+        padding_std_options = request.POST['block_std_options']
     except KeyError:
         padding_std_options  = "7"
     try:
-        etiquetas = request.GET['etiquetas']
+        etiquetas = request.POST['etiquetas']
     except KeyError:
         etiquetas = ""
     try:
-        landscape = request.GET['landscape']
+        landscape = request.POST['landscape']
     except KeyError:
         landscape = "h"
     

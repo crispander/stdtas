@@ -51,10 +51,11 @@ function load_options(){
 function upload_configuration(){
 	$(".button_submit").css("display", "none");
 	$("#cargando").css("display", "block");
-	data = $("#formstdgenerator").serialize();
+	csrf = $("input[name=csrfmiddlewaretoken]").val();
+	data = $("#formstdgenerator").serialize() + "&csrfmiddlewaretoken=" + csrf;
 	$.ajax({
-		type:"GET",
-		url: "submit",
+		type:"POST",
+		url: "submit/",
 		data: data,
 		success: function(data){
 			id_poll = data.id;
