@@ -31,12 +31,12 @@ DATABASES = {'default': dj_database_url.config(default=os.environ["HEROKU_POSTGR
    # }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '{0}/db/bdone'.format(APP_HOME),                    # Or path to database file if using sqlite3.
-    }
-}
+# DATABASES = {
+    # 'default': {
+        # 'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        # 'NAME': '{0}/db/bdone'.format(APP_HOME),                    # Or path to database file if using sqlite3.
+    # }
+# }
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
