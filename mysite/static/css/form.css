@@ -202,8 +202,8 @@ html, body{
 	text-align:center;
 	font-family:calibri, verdana, arial;
 	bottom:3px;
-	left:20%;
-	width:60%;
+	right:3%;
+	width:50%;
 	font-size:0.70em;
 	background:#000;
 	color:#FFF;
@@ -237,7 +237,7 @@ html, body{
 	text-align:center;
 }
 
-#subblock{
+#subblock, #subblock_results{
 	border:1px solid silver;
 	width:80%;
 	color:#000;
@@ -246,6 +246,10 @@ html, body{
 	height:69%;
 	overflow:auto;
 	font-size:12px;
+}
+
+#subblock_results{
+	display:none;
 }
 
 #subblock textarea{
@@ -327,4 +331,11 @@ html, body{
 
 .title_option{
 	font-weight:bolder;
+}
+
+.bar_progress_poll{
+	border:1px solid black;
+	width:80%;
+	background:#FFF;
+	padding:8px 0;
 }

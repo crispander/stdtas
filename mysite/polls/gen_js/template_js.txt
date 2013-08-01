@@ -5,7 +5,9 @@ $(function(){corchete_o}
    html += '<form action="http://www.generadoencuestas.com/api/v1/choice/" method="post" id="formcrispanderstr_{c17}" onsubmit="return send_poll({c17})">';
    html += "<div id='subblock'>";
    {choices}
-   html += "</div><input type='submit' class='button_crispander ' value='enviar' /><a id='name_app' href='http://www.generadorencuestas.com'>&copy;Powered&nbsp;by&nbsp;crispander</a></div>";
+   html += "</div><div id='subblock_results'>";
+   {choices}
+   html += "</div><input type='submit' class='button_crispander ' value='enviar' /><a onclick='toogle_subblocks();' id='info_state_subblock' >resultados</a><a id='name_app' href='http://www.generadorencuestas.com'>&copy;Powered&nbsp;by&nbsp;crispander</a></div>";
    html += "</form>";
    $(html).insertAfter('#generator_script_crispander_{c17}');
    
@@ -62,6 +64,15 @@ $(function(){corchete_o}
 	'overflow':'auto'
 	{corchete_c});
 	
+   $('#subblock_results').css({corchete_o}	
+    'display': 'none',
+	'width':'{c10}',
+	'height':'{c11}',
+	'margin':'auto',
+	'background': '{c6}',
+	'overflow':'auto'
+	{corchete_c});
+	
 	value_size_sublock = $("#preview").css("height").split("px")[0];
 	value_size_sublock = ( parseInt(value_size_sublock)  *  parseInt('{c11}'.split("%")[0])) / 100;
 	$("#subblock").css("height", value_size_sublock + "px");
@@ -106,6 +117,19 @@ $.ajax({corchete_o}
 	{corchete_c}
 {corchete_c});
 
-
 return false;
 {corchete_c}
+
+function toogle_subblocks(){corchete_o}
+	val = $("#subblock").css("display");
+	if(val != "none"){corchete_o}
+		$("#subblock").slideUp("slow");
+		$("#subblock_results").delay(800).fadeIn("slow");
+		$("#info_state_subblock").html("encuesta");
+	{corchete_c}else{corchete_o}
+		$("#subblock").delay(800).fadeIn("slow");
+		$("#subblock_results").slideUp("slow");
+		$("#info_state_subblock").html("resultados");
+	{corchete_c}
+{corchete_c}
+

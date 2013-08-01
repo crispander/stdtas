@@ -12,14 +12,17 @@ function load_options(){
 	value = $("#mytextarea").val();
 	value = value.split("\n");
 	html = "";
+	htmlR = "";
 		landscape = $("#landscape").val();
 		if(landscape == "h"){
 			for(i=0;value.length>i;i++){
 				if(type_poll == "radio"){
-					html += "<div class='block_std-options_cris' ><input type='radio' 'name='select'> " + value[i] + "<small>votes: 0</small></div>";
+					html += "<div class='block_std-options_cris' ><input type='radio' 'name='select'> " + value[i] + "</div>";
+					htmlR += "<div class='block_std-options_cris' ><input type='radio' 'name='select'> " + value[i] + " <br /><div class='bar_progress_poll'></div></div>";
 				}
 				else if(type_poll == "checkbox"){
-					html += "<div class='block_std-options_cris' ><input type='checkbox' 'name='select'> " + value[i] + "<small>votes: 0</small></div>";
+					html += "<div class='block_std-options_cris' ><input type='checkbox' 'name='select'> " + value[i] + "</div>";
+					htmlR += "<div class='block_std-options_cris' ><input type='checkbox' 'name='select'> " + value[i] + "<br /><div class='bar_progress_poll'></div></div>";
 				}
 				else if(type_poll == "textarea"){
 					html += "<textarea rows='4'></textarea>";
@@ -33,10 +36,12 @@ function load_options(){
 
 			for(i=0;value.length>i;i++){
 				if(type_poll == "radio"){
-					html += "<div style='height:98%;float:left;width:"+ size +"%' class='block_std-options_cris' ><input type='radio' 'name='select'> " + value[i] + "<small>votes: 0</small></div>";
+					html += "<div style='height:98%;float:left;width:"+ size +"%' class='block_std-options_cris' ><input type='radio' 'name='select'> " + value[i] + "</div>";
+					htmlR += "<div style='height:98%;float:left;width:"+ size +"%' class='block_std-options_cris' ><input type='radio' 'name='select'> " + value[i] + "<br /><div class='bar_progress_poll'></div></div>";
 				}
 				else if(type_poll == "checkbox"){
-					html += "<div style='height:98%;float:left;width:"+ size +"%' class='block_std-options_cris' ><input type='checkbox' 'name='select'> " + value[i] + "<small>votes: 0</small></div>";
+					html += "<div style='height:98%;float:left;width:"+ size +"%' class='block_std-options_cris' ><input type='checkbox' 'name='select'> " + value[i] + "</div>";
+					htmlR += "<div style='height:98%;float:left;width:"+ size +"%' class='block_std-options_cris' ><input type='checkbox' 'name='select'> " + value[i] + "<br /><div class='bar_progress_poll'></div></div>";
 				}
 				else if(type_poll == "textarea"){
 					html += "<textarea rows='4'></textarea>";
@@ -46,6 +51,7 @@ function load_options(){
 			}
 		}
 	$("#subblock").html(html);
+	$("#subblock_results").html(htmlR);
 }
 
 function upload_configuration(){
@@ -284,3 +290,16 @@ $("#imagen_input").keyup(function(){
 	  $( "#form_image_input" ).val( $( "#slider_form_image_input" ).slider( "value" ));
 
 });
+
+function toogle_subblocks(){
+	val = $("#subblock").css("display");
+	if(val != "none"){
+		$("#subblock").slideUp("slow");
+		$("#subblock_results").delay(800).fadeIn("slow");
+		$("#info_state_subblock").html("encuesta");
+	}else{
+		$("#subblock").delay(800).fadeIn("slow");
+		$("#subblock_results").slideUp("slow");
+		$("#info_state_subblock").html("resultados");
+	}
+}

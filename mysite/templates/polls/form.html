@@ -128,9 +128,9 @@
 		//mostrar resultados de votaciones
 		$("#mostrar_resultados").change(function(){
 			if($(this).val() == "si"){
-				$(".block_std-options_cris small").css("display", "block");
+				$("#info_state_subblock").css("display", "block");
 			}else{
-				$(".block_std-options_cris small").css("display", "none");
+				$("#info_state_subblock").css("display", "none");
 			}
 		});
 		
@@ -610,8 +610,12 @@
 				
 				
 				</div>
+				<div id="subblock_results">
+
+				
+				</div>
 				<a class="button_crispander" >Enviar</a>
-				<a id="name_app" href="/">&copy;Powered&nbsp;by&nbsp;crispander</a>
+				<a onclick="toogle_subblocks();" id="info_state_subblock" >resultados</a><a id="name_app" href="/">&copy;Powered&nbsp;by&nbsp;crispander</a>
 			</div>
 			
 		</td>
