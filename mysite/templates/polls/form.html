@@ -58,6 +58,7 @@
 			$("#subfondo").ColorPickerHide();
 			
 			$("#subblock").css("background-color", "#"  + hex);
+			$("#subblock_results").css("background-color", "#"  + hex);
 			},
 		});
 		
@@ -71,6 +72,7 @@
 			$("#font").ColorPickerHide();
 			
 			$("#preview #subblock").css("color", "#"  + hex);
+			$("#preview #subblock_results").css("color", "#"  + hex);
 			},
 		});
 		
@@ -288,6 +290,7 @@
       slide: function( event, ui ){
 		$( "#width_subblock" ).val( ui.value + "%");
 		$("#preview #subblock").css("width", ui.value  + "%" );
+		$("#preview #subblock_results").css("width", ui.value  + "%" );
 	  },
 	  });
 	  $( "#width_subblock" ).val( $( "#slider_width_subblock" ).slider( "value" ) + "%");
@@ -297,10 +300,11 @@
       range: "max",
 	  min:10,
       max: 76,
-      value: 69,
+      value: 44,
       slide: function( event, ui ){
 		$( "#height_subblock" ).val( ui.value + "%");
 		$("#preview #subblock").css("height", ui.value  + "%" );
+		$("#preview #subblock_results").css("height", ui.value  + "%" );
 	  },
 	  });
 	  $( "#height_subblock" ).val( $( "#slider_height_subblock" ).slider( "value" ) + "%");
@@ -323,7 +327,7 @@
       range: "max",
 	  min:10,
       max: 100,
-      value: 23,
+      value: 10,
       slide: function( event, ui ){
 		$( "#height_blocktitle" ).val( ui.value + "%");
 		$("#preview #preview_question").css("height", ui.value  + "%" );

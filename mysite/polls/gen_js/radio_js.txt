@@ -1,4 +1,4 @@
 if('{c4}' == 'h')
-	html += "<div class='block_std-options_cris'><input type='radio' name='choice' id='choice{c1}' value='{c1}' /><label for='choice{c1}'>{c2}</label> <small>votes: {c3}</small></div> <input type='hidden' value='radio' name='type_poll' />"; 
+	html += "<div class='block_std-options_cris'><input type='radio' name='choice' id='choice{c1}' value='{c1}' /><label for='choice{c1}'>{c2}</label></div> <input type='hidden' value='radio' name='type_poll' />"; 
 else
-	html += "<div class='block_std-options_cris' style='width:{c5}%; height:98%; float:left;'><input type='radio' name='choice' id='choice{c1}' value='{c1}' /><label for='choice{c1}'>{c2}</label> <small>votes: {c3}</small></div> <input type='hidden' value='radio' name='type_poll' />"; 
+	html += "<div class='block_std-options_cris' style='width:{c5}%; height:98%; float:left;'><input type='radio' name='choice' id='choice{c1}' value='{c1}' /><label for='choice{c1}'>{c2}</label></div> <input type='hidden' value='radio' name='type_poll' />"; 

@@ -275,19 +275,22 @@ def render_poll(request, pk):
     c19 = font_size_title
     c20 = font_size_block
     c21 = padding_std_options
-	c22 = etiquetas
-	c23 = landscape
+    c22 = etiquetas
+    c23 = landscape
     """
     obj = Poll.objects.get(pk=pk)
     choices = obj.get_choices()
     html = ""
+    htmlR = ""
     SETTINGS_HOME = os.path.abspath(os.path.dirname(__file__))
     APP_HOME = os.path.split(SETTINGS_HOME)[0]
     path_file = os.path.join(APP_HOME, "polls", "gen_js", "template_js.txt")
     if obj.tipo == 'radio':
         path_file2 = os.path.join(APP_HOME, "polls", "gen_js", "radio_js.txt")
+        path_file3 = os.path.join(APP_HOME, "polls", "gen_js", "radio_js_results.txt")
     else:
         path_file2 = os.path.join(APP_HOME, "polls", "gen_js", "checkbox_js.txt")
+        path_file3 = os.path.join(APP_HOME, "polls", "gen_js", "radio_js_results.txt")
     f = open(path_file, "rb")
     fd = f.read()
     f.close()
@@ -295,12 +298,23 @@ def render_poll(request, pk):
     radio = open(path_file2, "rb")
     radio = radio.read()
     radio = str(radio)
-	
+    
+    radio2 = open(path_file3, "rb")
+    radio2 = radio2.read()
+    radio2 = str(radio2)
+    total_votos = obj.votes_ultimate()
+    
     size_landscape = (97 / choices.count());
-	
+    
     for i in choices:
-        html += radio.format(c1=str(i.id), c2=i.name.encode("UTF-8").replace("\r", ""), c3=str(i.count_votes()), c4=str(obj.landscape) ,c5=str(size_landscape))
-	send = fd.format(corchete_c="}",corchete_o="{", nombre=obj.question, choices=html, c1=obj.background, c2=obj.border_radius, c3=str(str(obj.border_width) + " solid " + str(obj.border_color)), c4=obj.width, c5=obj.height, c6=obj.sub_background, c7=obj.font_family, c8=obj.font_color, c9=obj.padding, c10=obj.width_subblock, c11=obj.height_subblock, c12=obj.width_blocktitle, c13=obj.height_blocktitle, c14=obj.color_title, c15=obj.gradient1, c16=obj.gradient2, c17=obj.id, c18=obj.show_results, c19=obj.size_title, c20=obj.size_block, c21=obj.padding_std_options, c22=obj.etiquetas, c23=obj.landscape)
+        votos = i.count_votes()
+        try:
+            porcentaje = ( votos * 100) / total_votos
+        except ZeroDivisionError:
+            porcentaje = 0
+        htmlR += radio2.format(c1=str(i.id), c2=i.name.encode("UTF-8").replace("\r", ""), c3=str(votos), c4=str(obj.landscape) ,c5=str(size_landscape), c6=str(porcentaje))
+        html += radio.format(c1=str(i.id), c2=i.name.encode("UTF-8").replace("\r", ""), c3=str(votos), c4=str(obj.landscape) ,c5=str(size_landscape))
+    send = fd.format(corchete_c="}",corchete_o="{", nombre=obj.question, choices=html, choices_results=htmlR,c1=obj.background, c2=obj.border_radius, c3=str(str(obj.border_width) + " solid " + str(obj.border_color)), c4=obj.width, c5=obj.height, c6=obj.sub_background, c7=obj.font_family, c8=obj.font_color, c9=obj.padding, c10=obj.width_subblock, c11=obj.height_subblock, c12=obj.width_blocktitle, c13=obj.height_blocktitle, c14=obj.color_title, c15=obj.gradient1, c16=obj.gradient2, c17=obj.id, c18=obj.show_results, c19=obj.size_title, c20=obj.size_block, c21=obj.padding_std_options, c22=obj.etiquetas, c23=obj.landscape)
 
     return HttpResponse(send, "text/javascript")
     

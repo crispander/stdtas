@@ -18,11 +18,11 @@ function load_options(){
 			for(i=0;value.length>i;i++){
 				if(type_poll == "radio"){
 					html += "<div class='block_std-options_cris' ><input type='radio' 'name='select'> " + value[i] + "</div>";
-					htmlR += "<div class='block_std-options_cris' ><input type='radio' 'name='select'> " + value[i] + " <br /><div class='bar_progress_poll'></div></div>";
+					htmlR += "<div class='block_std-options_cris' ><input type='radio' 'name='select'> " + value[i] + " <br /><div class='bar_progress_poll'></div>&nbsp;&nbsp;0(0%)</div>";
 				}
 				else if(type_poll == "checkbox"){
 					html += "<div class='block_std-options_cris' ><input type='checkbox' 'name='select'> " + value[i] + "</div>";
-					htmlR += "<div class='block_std-options_cris' ><input type='checkbox' 'name='select'> " + value[i] + "<br /><div class='bar_progress_poll'></div></div>";
+					htmlR += "<div class='block_std-options_cris' ><input type='checkbox' 'name='select'> " + value[i] + "<br /><div class='bar_progress_poll'></div>&nbsp;&nbsp;0(0%)</div>";
 				}
 				else if(type_poll == "textarea"){
 					html += "<textarea rows='4'></textarea>";
@@ -37,11 +37,11 @@ function load_options(){
 			for(i=0;value.length>i;i++){
 				if(type_poll == "radio"){
 					html += "<div style='height:98%;float:left;width:"+ size +"%' class='block_std-options_cris' ><input type='radio' 'name='select'> " + value[i] + "</div>";
-					htmlR += "<div style='height:98%;float:left;width:"+ size +"%' class='block_std-options_cris' ><input type='radio' 'name='select'> " + value[i] + "<br /><div class='bar_progress_poll'></div></div>";
+					htmlR += "<div style='height:98%;float:left;width:"+ size +"%' class='block_std-options_cris' ><input type='radio' 'name='select'> " + value[i] + "<br /><div class='bar_progress_poll'></div>&nbsp;&nbsp;0(0%)</div>";
 				}
 				else if(type_poll == "checkbox"){
 					html += "<div style='height:98%;float:left;width:"+ size +"%' class='block_std-options_cris' ><input type='checkbox' 'name='select'> " + value[i] + "</div>";
-					htmlR += "<div style='height:98%;float:left;width:"+ size +"%' class='block_std-options_cris' ><input type='checkbox' 'name='select'> " + value[i] + "<br /><div class='bar_progress_poll'></div></div>";
+					htmlR += "<div style='height:98%;float:left;width:"+ size +"%' class='block_std-options_cris' ><input type='checkbox' 'name='select'> " + value[i] + "<br /><div class='bar_progress_poll'></div>&nbsp;&nbsp;0(0%)</div>";
 				}
 				else if(type_poll == "textarea"){
 					html += "<textarea rows='4'></textarea>";
@@ -75,13 +75,14 @@ function upload_configuration(){
 			$(".button_submit").css("display", "block");
 		}
 	});
-	
+
 	return false;
 }
 
 function set_font_block(){
 	val = $("#font_size_block").val();
 	$("#preview #subblock").css("font-size", val + "px");
+	$("#preview #subblock_results").css("font-size", val + "px");
 }
 
 function set_font_title(){
@@ -177,7 +178,7 @@ function logout(){
      ref.parentNode.insertBefore(js, ref);
    }(document));
 
-   
+
 jQuery.fn.extend({
 insertAtCaret: function(myValue){
   return this.each(function(i) {
@@ -230,8 +231,8 @@ $(function(){
       close: function() {
       }
     });
-	
-	
+
+
 	  $( "#create-image" )
 		  .button({
 		    icons: {
@@ -242,7 +243,7 @@ $(function(){
 		  .click(function() {
 			$( "#dialog-form" ).dialog( "open" );
 		  });
-	  
+
 	  $( "#create-br" )
 		  .button({
 		    icons: {
@@ -254,7 +255,7 @@ $(function(){
 			$('#mytextarea').insertAtCaret("<br />");
 			load_options();
           });
-	  
+
 	  $( "#create-b" )
 		  .button()
 		  .click(function() {
@@ -268,11 +269,11 @@ $(function(){
 				load_options();
 				}
           });
-		  
+
 $("#imagen_input").keyup(function(){
 	ima = $("#imagen_input").val();
 	html = "<img src='"+ima+"' height='' />";
-	
+
 	$("#preview_image").html(html);
 });
 
