@@ -48,6 +48,8 @@ $(function(){corchete_o}
    $('#preview #info_state_subblock').css({corchete_o}'display':'block', 'position':'absolute', 'padding':'1px 5px', 'text-align':'center', 'font-family':'calibri, verdana, arial', 'bottom':'3px', 'left':'3%', 'width': '20%', 'font-size':'0.80em', 'background':'#000', 
 	'color':'#FFF', 'cursor':'pointer', 'border-radius':'5px'{corchete_c});
 	
+	$(".porcentage").css({corchete_o}'padding':'1px 5px', 'text-align':'center', 'font-family':'calibri, verdana, arial', 'background':'#000', 
+	'color':'#FFF', 'border-radius':'5px'{corchete_c});
 	value_size_question = $("#preview").css("height").split("px")[0];
 	value_size_question = ( parseInt(value_size_question)  *  parseInt('{c13}'.split("%")[0])) / 100;
    $('#preview #preview_question').css({corchete_o}	
@@ -85,7 +87,8 @@ $(function(){corchete_o}
 	
 	$('#degrade').html(".block_std-options_cris{corchete_o}	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, {c15}), color-stop(1, {c16}) );background:-moz-linear-gradient( center top, {c15} 5%, {c16} 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='{c15}', endColorstr='{c16}');background-color:{c15};border:1px solid #adadad;display:block;padding:{c21};{corchete_c}");
 	$('#degrade').append(".button_crispander {corchete_o} box-shadow:inset 0px 1px 0px 0px #ffffff; -moz-box-shadow:inset 0px 1px 0px 0px #ffffff; -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) ); background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% ); filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf'); background-color:#ededed; -moz-border-radius:6px; -webkit-border-radius:6px; border-radius:6px; border:1px solid #dcdcdc; display:block; color:#777777; font-family:arial; font-size:15px; font-weight:bold; margin:auto; width:50%; margin-top:10px; cursor:pointer; padding:3px 0; text-decoration:none; text-align:center;{corchete_c}");
-
+	$('.block_std-options_cris img').css({corchete_o}'display': 'block', 'margin':'auto' {corchete_c});
+	
 	show = '{c18}';
 	if(show != "si")
 		$('.block_std-options_cris small').css('display', 'none');

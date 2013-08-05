@@ -1,4 +1,4 @@
 if('{c4}' == 'h')
-	html += "<div class='block_std-options_cris'><label for='choice{c1}'>{c2}</label> <br /><div class='bar_progress_poll'><div style='width:{c6}%' class='subblock_bar_progress'>&nbsp;</div></div>&nbsp;&nbsp;{c3}({c6}%) </div>"; 
+	html += "<div class='block_std-options_cris'><label for='choice{c1}'>{c2}</label> <br /><div class='bar_progress_poll'><div style='width:{c6}%' class='subblock_bar_progress'>&nbsp;</div></div>&nbsp;&nbsp;<span class='porcentage'>{c3}({c6}%)</span> </div>"; 
 else
-	html += "<div class='block_std-options_cris' style='width:{c5}%; height:98%; float:left;'><label for='choice{c1}'>{c2}</label> <br /><div class='bar_progress_poll'><div style='width:{c6}%' class='subblock_bar_progress'>&nbsp;</div></div>&nbsp;&nbsp;{c3}({c6}%) </div>"; 
+	html += "<div class='block_std-options_cris' style='width:{c5}%; height:98%; float:left;'><label for='choice{c1}'>{c2}</label> <br /><div class='bar_progress_poll'><div style='width:{c6}%' class='subblock_bar_progress'>&nbsp;</div></div>&nbsp;&nbsp;<span class='porcentage'>{c3}({c6}%)</span> </div>"; 
