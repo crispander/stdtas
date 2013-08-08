@@ -8,6 +8,7 @@ import simplejson
 import os
 
 from datetime import datetime
+from django.utils import timezone
 
 import simplejson
 
@@ -239,11 +240,20 @@ def create_poll(request):
         landscape = request.POST['landscape']
     except KeyError:
         landscape = "h"
+    try:
+        request.POST['filter_dateclose']
+    except KeyError:
+        fecha = None
+    else:
+        if request.POST['filter_dateclose'] == "yes":
+            fecha = datetime.strptime(request.POST['dateclose'], "%m/%d/%Y %H:%M")
+        else:
+            fecha = None
     
     if request.user.is_authenticated():
-        obj = Poll.objects.create(tipo = type, question=question,user=request.user, pub_date=datetime.now(), width=width, height=height, border_visible=borde_visible, border_width=border_width, border_color=borde, background=fondo, border_radius=border_radius, sub_background=subfondo, font_family=font_style, font_color=letra, color_title=letra_subblock, padding=padding, width_subblock=width_subblock, height_subblock=height_subblock, width_blocktitle=width_blocktitle, height_blocktitle=height_blocktitle, gradient1=gradient1, gradient2=gradient2, show_results=mostrar_resultados, size_title=font_size_title, size_block=font_size_block, padding_std_options=padding_std_options, etiquetas=etiquetas, landscape=landscape)
+        obj = Poll.objects.create(tipo = type, question=question,user=request.user, pub_date=datetime.now(), width=width, height=height, border_visible=borde_visible, border_width=border_width, border_color=borde, background=fondo, border_radius=border_radius, sub_background=subfondo, font_family=font_style, font_color=letra, color_title=letra_subblock, padding=padding, width_subblock=width_subblock, height_subblock=height_subblock, width_blocktitle=width_blocktitle, height_blocktitle=height_blocktitle, gradient1=gradient1, gradient2=gradient2, show_results=mostrar_resultados, size_title=font_size_title, size_block=font_size_block, padding_std_options=padding_std_options, etiquetas=etiquetas, landscape=landscape, fechaCierre=fecha)
     else:
-        obj = Poll.objects.create(tipo = type, question=question, pub_date=datetime.now(), width=width, height=height, border_visible=borde_visible, border_width=border_width, border_color=borde, background=fondo, border_radius=border_radius, sub_background=subfondo, font_family=font_style, font_color=letra, color_title=letra_subblock, padding=padding, width_subblock=width_subblock, height_subblock=height_subblock, width_blocktitle=width_blocktitle, height_blocktitle=height_blocktitle, gradient1=gradient1, gradient2=gradient2, show_results=mostrar_resultados, size_title=font_size_title, size_block=font_size_block, padding_std_options=padding_std_options, etiquetas=etiquetas, landscape=landscape)
+        obj = Poll.objects.create(tipo = type, question=question, pub_date=datetime.now(), width=width, height=height, border_visible=borde_visible, border_width=border_width, border_color=borde, background=fondo, border_radius=border_radius, sub_background=subfondo, font_family=font_style, font_color=letra, color_title=letra_subblock, padding=padding, width_subblock=width_subblock, height_subblock=height_subblock, width_blocktitle=width_blocktitle, height_blocktitle=height_blocktitle, gradient1=gradient1, gradient2=gradient2, show_results=mostrar_resultados, size_title=font_size_title, size_block=font_size_block, padding_std_options=padding_std_options, etiquetas=etiquetas, landscape=landscape, fechaCierre=fecha)
     
     opciones = options.split("\n")
     for i in opciones:
@@ -277,6 +287,9 @@ def render_poll(request, pk):
     c21 = padding_std_options
     c22 = etiquetas
     c23 = landscape
+    c24 = border_visible
+    c25 = close (si tiene fechs de cierre o no)
+    c26 = fecha (fecha para el cieerre)
     """
     obj = Poll.objects.get(pk=pk)
     choices = obj.get_choices()
@@ -285,6 +298,19 @@ def render_poll(request, pk):
     SETTINGS_HOME = os.path.abspath(os.path.dirname(__file__))
     APP_HOME = os.path.split(SETTINGS_HOME)[0]
     path_file = os.path.join(APP_HOME, "polls", "gen_js", "template_js.txt")
+    
+    if obj.fechaCierre:
+        current = timezone.now()
+        if current > obj.fechaCierre:
+            close = 'si'
+            fecha = obj.fechaCierre.strftime("%m/%d/%Y %H:%M")
+        else:
+            close = 'no'
+            fecha = obj.fechaCierre.strftime("%m/%d/%Y %H:%M")
+    else:
+        close = 'no'
+        fecha = "Encuesta abierta"
+        
     if obj.tipo == 'radio':
         path_file2 = os.path.join(APP_HOME, "polls", "gen_js", "radio_js.txt")
         path_file3 = os.path.join(APP_HOME, "polls", "gen_js", "radio_js_results.txt")
@@ -295,9 +321,12 @@ def render_poll(request, pk):
     fd = f.read()
     f.close()
     
-    radio = open(path_file2, "rb")
-    radio = radio.read()
-    radio = str(radio)
+    if close == "no":
+		radio = open(path_file2, "rb")
+		radio = radio.read()
+		radio = str(radio)
+    else:
+       radio = "encuesta cerrada"
     
     radio2 = open(path_file3, "rb")
     radio2 = radio2.read()
@@ -312,9 +341,12 @@ def render_poll(request, pk):
             porcentaje = ( votos * 100) / total_votos
         except ZeroDivisionError:
             porcentaje = 0
-        htmlR += radio2.format(c1=str(i.id), c2=i.name.encode("UTF-8").replace("\r", ""), c3=str(votos), c4=str(obj.landscape) ,c5=str(size_landscape), c6=str(porcentaje))
-        html += radio.format(c1=str(i.id), c2=i.name.encode("UTF-8").replace("\r", ""), c3=str(votos), c4=str(obj.landscape) ,c5=str(size_landscape))
-    send = fd.format(corchete_c="}",corchete_o="{", nombre=obj.question, choices=html, choices_results=htmlR,c1=obj.background, c2=obj.border_radius, c3=str(str(obj.border_width) + " solid " + str(obj.border_color)), c4=obj.width, c5=obj.height, c6=obj.sub_background, c7=obj.font_family, c8=obj.font_color, c9=obj.padding, c10=obj.width_subblock, c11=obj.height_subblock, c12=obj.width_blocktitle, c13=obj.height_blocktitle, c14=obj.color_title, c15=obj.gradient1, c16=obj.gradient2, c17=obj.id, c18=obj.show_results, c19=obj.size_title, c20=obj.size_block, c21=obj.padding_std_options, c22=obj.etiquetas, c23=obj.landscape)
+        htmlR += radio2.format(c1=str(i.id), c2=i.name.encode("UTF-8").replace("\r", "").replace('"', "&quot;"), c3=str(votos), c4=str(obj.landscape) ,c5=str(size_landscape), c6=str(porcentaje))
+        if close == "no":
+		    html += radio.format(c1=str(i.id), c2=i.name.encode("UTF-8").replace("\r", "").replace('"', "&quot;"), c3=str(votos), c4=str(obj.landscape) ,c5=str(size_landscape))
+        else:
+            html = "html += 'Encuesta cerrada &nbsp;&nbsp;&nbsp;&nbsp; <a onclick=" + '"toogle_subblocks()" style="color:white;background:#000;cursor:pointer"' + "> Ver Resultados </a>';"
+	send = fd.format(corchete_c="}",corchete_o="{", nombre=obj.question, choices=html, choices_results=htmlR,c1=obj.background, c2=obj.border_radius, c3=str(str(obj.border_width) + " solid " + str(obj.border_color)), c4=obj.width, c5=obj.height, c6=obj.sub_background, c7=obj.font_family, c8=obj.font_color, c9=obj.padding, c10=obj.width_subblock, c11=obj.height_subblock, c12=obj.width_blocktitle, c13=obj.height_blocktitle, c14=obj.color_title, c15=obj.gradient1, c16=obj.gradient2, c17=obj.id, c18=obj.show_results, c19=obj.size_title, c20=obj.size_block, c21=obj.padding_std_options, c22=obj.etiquetas, c23=obj.landscape, c24=obj.border_visible, c25 = close, c26=fecha)
 
     return HttpResponse(send, "text/javascript")
     

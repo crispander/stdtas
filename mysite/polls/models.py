@@ -44,6 +44,7 @@ class Poll(models.Model):
     gradient2 = models.CharField(max_length=200, null=True, blank=True)
     etiquetas = models.CharField(max_length=200, null=True, blank=True)
     landscape = models.CharField(max_length=200, null=True, blank=True)
+    fechaCierre = models.DateTimeField(null=True, blank=True)
 
     def __unicode__(self):
         return self.question

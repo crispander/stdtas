@@ -11,6 +11,8 @@
 	<script type="text/javascript" src="{{ STATIC_URL }}js/form.js"></script>
 	
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<!-- documentation http://trentrichardson.com/examples/timepicker/ -->
+	<script type="text/javascript" src="{{ STATIC_URL }}js/datetimepicker.js"></script>
 	<style id="degrade"></style>
 	<style id="padding_options"></style>
 	<script>
@@ -18,6 +20,32 @@
 	var type_poll = "radio";
 	var id_poll = null;
 	var estado_bold = true;
+	
+	//widget para spinner en time
+	  $.widget( "ui.timespinner", $.ui.spinner, {
+			options: {
+			  // seconds
+			  step: 60 * 1000,
+			  // hours
+			  page: 60
+			},
+		 
+			_parse: function( value ) {
+			  if ( typeof value === "string" ) {
+				// already a timestamp
+				if ( Number( value ) == value ) {
+				  return Number( value );
+				}
+				return +Globalize.parseDate( value );
+			  }
+			  return value;
+			},
+		 
+			_format: function( value ) {
+			  return Globalize.format( new Date(value), "t" );
+			}
+	  });
+  
 	$(document).ready(function(){
 	$("#degrade").html(".block_std-options_cris{	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d6e1e8), color-stop(1, #b6b7b8) );background:-moz-linear-gradient( center top, #d6e1e8 5%, #b6b7b8 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d6e1e8', endColorstr='#b6b7b8');background-color:#d6e1e8;border:1px solid #adadad;display:block;}");
 	
@@ -153,6 +181,16 @@
 			type_poll = $(this).val();
 			load_options()
 		});
+		
+		//filtrar o mo por fecha
+		$('#filter_dateclose').change(function(){
+		    if($("#filter_dateclose").is(":checked")){
+				$(".hidden_dateclose").css("display","block");
+			}else{
+				$(".hidden_dateclose").css("display","none");
+			}
+		});
+		
 		
 		//alamcenar y mostrar opciones
 		$("#mytextarea").keyup(function(){
@@ -349,6 +387,12 @@
 	  },
 	  });
 	  $( "#block_std_options" ).val( $( "#slider_block_std_options" ).slider( "value" ) + "px");
+	
+	
+	//dattepicker
+	//$("#dateclose").datepicker();
+	$('#dateclose').datetimepicker();
+	
 	});
 
 	</script>
@@ -598,7 +642,11 @@
 							</select>
 						</td>
 						<td>
-							&nbsp;
+							<label for="dateclose" class="title_option">Fecha de cierre</label><br />
+							<input type="checkbox" id="filter_dateclose" value="yes" name="filter_dateclose" />
+							<div class="hidden_dateclose">
+								<input type="text" id="dateclose"  name="dateclose" />
+							</div>
 						</td>
 					</tr>
 				</table>

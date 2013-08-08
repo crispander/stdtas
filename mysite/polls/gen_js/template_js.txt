@@ -7,7 +7,7 @@ $(function(){corchete_o}
    {choices}
    html += "</div><div id='subblock_results'>";
    {choices_results}
-   html += "</div><input type='submit' class='button_crispander ' value='enviar' /><a onclick='toogle_subblocks();' id='info_state_subblock' >resultados</a><a id='name_app' href='http://www.generadorencuestas.com'>&copy;Powered&nbsp;by&nbsp;crispander</a></div>";
+   html += "</div><input type='submit' class='button_crispander ' value='enviar' />Fecha de cierre: {c26}<a onclick='toogle_subblocks();' id='info_state_subblock' >resultados</a><a id='name_app' href='http://www.generadorencuestas.com'>&copy;Powered&nbsp;by&nbsp;crispander</a></div>";
    html += "</form>";
    $(html).insertAfter('#generator_script_crispander_{c17}');
    
@@ -91,7 +91,11 @@ $(function(){corchete_o}
 	
 	show = '{c18}';
 	if(show != "si")
-		$('.block_std-options_cris small').css('display', 'none');
+		$('#info_state_subblock').css('display', 'none');
+		
+	border_visible= '{c24}';
+	if(border_visible != "si")
+		$('#preview').css('border', 'none');
 		
 	$("#preview #subblock").css("font-size", {c20} + "px");
 	$("#preview #subblock_results").css("font-size", {c20} + "px");
@@ -118,12 +122,12 @@ function send_poll(id){corchete_o}
 
 data= $("#formcrispanderstr_" + id).serialize();
 $.ajax({corchete_o}
-	url: "http://www.generadorencuestas.com/polls/{c17}/submit/",
+	url: "http://http://www.generadorencuestas.com/polls/{c17}/submit/",
 	data: data,
 	type: "GET",
 	success: function(){corchete_o}
 		if(show=='after'){corchete_o}
-			$('.block_std-options_cris small').css('display', 'inline-block');
+			toogle_subblocks();
 		{corchete_c}
 		else if(show=='app'){corchete_o}
 			document.location.href = 'http://www.generadorencuestas.com/polls/{c17}/results/';
