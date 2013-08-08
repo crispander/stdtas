@@ -122,7 +122,7 @@ function send_poll(id){corchete_o}
 
 data= $("#formcrispanderstr_" + id).serialize();
 $.ajax({corchete_o}
-	url: "http://http://www.generadorencuestas.com/polls/{c17}/submit/",
+	url: "http://www.generadorencuestas.com/polls/{c17}/submit/",
 	data: data,
 	type: "GET",
 	success: function(){corchete_o}

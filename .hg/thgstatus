@@ -264,9 +264,9 @@ r.git/refs/remotes/heroku
 massets/css
 massets/images
 massets/js
-rdb
+mdb
 mimages
-mmysite
+rmysite
 rmysite/polls
 mmysite/polls/gen_js
 rmysite/polls/migrations
