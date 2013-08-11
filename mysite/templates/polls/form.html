@@ -4,13 +4,15 @@
 	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 	<link href="{{ STATIC_URL }}css/form.css" type="text/css" rel="stylesheet">
 	
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/start/jquery-ui.css" />
+	<!--<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/start/jquery-ui.css" />-->
 	<link href="{{ STATIC_URL }}css/color/colorpicker.css" type="text/css" rel="stylesheet">
-	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.js"></script>
+	<link href="{{ STATIC_URL }}css/jquery-ui-1.10.3.custom.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/color/colorpicker.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/form.js"></script>
 	
-	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<!--<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>-->
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.10.3.custom.js"></script>
 	<!-- documentation http://trentrichardson.com/examples/timepicker/ -->
 	<script type="text/javascript" src="{{ STATIC_URL }}js/datetimepicker.js"></script>
 	<style id="degrade"></style>
@@ -393,8 +395,13 @@
 	//$("#dateclose").datepicker();
 	$('#dateclose').datetimepicker();
 	
+	$( "#tabs" ).tabs();
+	$("div.ui-tabs-panel").css('padding','0px');
+	$(".ui-widget").css('font-size','12px');
+	
 	});
 
+	
 	</script>
 </head>
 <body>
@@ -413,248 +420,8 @@
 	</div>
      {% csrf_token %}
 	<div id="medium">
-	<table width="80%">
-	<tr>
 	
-		<td width="60%">
-			<form id="formstdgenerator" onsubmit="return upload_configuration()">
-			
-			
-				<!-- colores -->
-				<label class="title_option">Colores: </label><br />
-				
-				<div id="fondo" title="fondo"></div>
-				<input type="hidden" id="fondo_i_hidden" name="fondo" />
-				
-				<div   id="borde" title="borde"></div>
-				<input type="hidden" id="borde_i_hidden" name="borde" />
-				
-				<div  id="subfondo" title="subfondo"></div>
-				<input type="hidden" id="subfondo_i_hidden" name="subfondo" />
-
-				<div  id="font_subblock" title="letra titulo"></div>
-				<input type="hidden" id="font_subblock_i_hidden" name="font_subblock" />
-				
-				<div  id="font" title="letra bloque"></div>
-				<input type="hidden" id="font_i_hidden" name="font" />
-				
-				<div  id="gradient1" title="gradient 1"></div>
-				<input type="hidden" id="gradient1_i_hidden" name="gradient1" />
-
-				<div  id="gradient2" title="gradient 2"></div>
-				<input type="hidden" id="gradient2_i_hidden" name="gradient2" />
-				
-				
-				<br />
-				<label class="title_option">Tipo: </label><br />
-				<select id="type_poll" name="type_poll">
-				<option value="radio">Mulitple con unica respuesta</option>
-				<option value="checkbox">Mulitple con multiple respuesta</option>
-				<!--<option value="textarea">Libre</option>-->
-				</select><br />
-				
-				<!-- Pregunta -->
-				<label class="title_option">Pregunta: </label><br />
-				
-				<input type="text" name="question" id="question"><br />
-				 <!-- opciones -->
-
-				<table>
-					<tr>
-						<td rowspan="3">
-							<textarea rows="8" cols="40" name="options" id="mytextarea"></textarea>
-						</td>
-						<td>
-							<a id="create-image">Imagen</a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="create-br">salto de linea</a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="create-b"><b style="font-size:0.5em;">N</b></a>
-						</td>
-					</tr>
-				</table>
-				<br />
-
-				
-				<label class="title_option">Etiquetas: </label>&nbsp;
-				<input type="text" id="etiquetas" name="etiquetas" /><br />
-				<small>Escriba las etiquetas separadas por coma ejm. carros, deportes, maquillaje</small>
-
-				
-				<table width="80%">
-					<tr>
-				<!-- ancho -->
-					<td width="50%">
-							<p>
-							  <label for="border-width-input" class="title_option">Ancho:</label>
-							  <input type="text" name="width" id="preview_width_input" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
-							</p>
-							<div id="preview_width"></div>
-						</td>
-				<!-- alto -->		
-						<td>			
-							<p>
-							  <label for="preview_height_input" class="title_option">Alto:</label>
-							  <input type="text" name="height" id="preview_height_input" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
-							</p>
-							<div id="preview_height"></div>
-						</td>
-					</tr>
-					
-					<tr>
-				<!-- grosor de el borde -->
-						<td>
-							<p>
-							  <label for="border-width-input" class="title_option">Ancho del borde:</label>
-							  <input type="text" name="border_width" id="border-width-input" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
-							</p>
-							<div id="conf-borde"></div>
-						</td>
-				<!-- border readius -->		
-						<td>			
-							<p>
-							  <label for="border-radius-input" class="title_option">Esquinas:</label>
-							  <input type="text" name="border_radius" id="border-radius-input" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
-							</p>
-							<div id="conf-borde-radius"></div>
-						</td>
-					</tr>
-				<!-- padding -->
-					<tr>
-						<td>
-						<p>
-						  <label for="padding" class="title_option">padding:</label>
-						  <input type="text" id="padding" name="padding" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
-						</p>
-						<div id="slider-padding"></div>
-						</td>
-			<!-- width subblock -->	
-						<td>
-						<p>
-						  <label for="width_subblock" class="title_option">Ancho bloque 2:</label>
-						  <input type="text" id="width_subblock" name="width_subblock" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
-						</p>
-						<div id="slider_width_subblock"></div>
-						</td>
-					</tr>
-				
-					<tr>
-			<!-- height subblock -->	
-						<td>
-							<p>
-							  <label for="height_subblock" class="title_option">Alto bloque 2:</label>
-							  <input type="text" id="height_subblock" name="height_subblock" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
-							</p>
-							<div id="slider_height_subblock"></div>
-						</td>
-			<!-- ancho bloque de la question -->	
-						<td>
-							<p>
-							  <label for="width_blocktitle" class="title_option">Ancho question:</label>
-							  <input type="text" id="width_blocktitle" name="width_blocktitle" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
-							</p>
-							<div id="slider_width_blocktitle"></div>
-						</td>
-					</tr>
-					
-					<tr>
-			<!-- height bloque de la question -->	
-						<td>
-							<p>
-							  <label for="height_blocktitle" class="title_option">Alto question:</label>
-							  <input type="text" id="height_blocktitle" name="height_blocktitle" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
-							</p>
-							<div id="slider_height_blocktitle"></div>
-						</td>
-
-			<!-- padding subblock espacio entre bloques -->	
-						<td>
-							<p>
-							  <label for="padding_block_std_optionss" class="title_option">Espacio en bloques:</label>
-							  <input type="text" id="block_std_options" name="block_std_options" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
-							</p>
-							<div id="slider_block_std_options"></div>
-						</td>
-					</tr>
-				</table>
-				
-				
-				<table width="100%">
-					<tr>
-						<td>
-							<label for="font_size_title" class="title_option">Tamaño letra titulo</label><br />
-							<input type="text" name="font_size_title" value="19" id="font_size_title" />
-						</td>
-						<td>
-							<label for="font_size_block" class="title_option">Tamaño letra bloque</label><br />
-							<input type="text" name="font_size_block" value="12" id="font_size_block" />
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label for="type_font" class="title_option">Tipo de Letra</label><br />
-							<select id="type_font" name="font_style">
-							<option value="arial">Arial</option>
-							<option value="helvetica">Helvetica</option>
-							<option value="calibri" selected>Calibri</option>
-							<option value="verdana">Verdana</option>
-							<option value="trebuchet ms">Trebuchet MS</option>
-							</select>
-						</td>
-						<td>
-							<label for="visible_border" class="title_option">Borde visible</label><br />
-							<select id="visible_border" name="borde_visible">
-							<option value="si">Si</option>
-							<option value="no">No</option>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label for="mostrar_resultados" class="title_option">Mostrar resultados</label><br />
-							<select id="mostrar_resultados" name="mostrar_resultados">
-							<option value="si">Si</option>
-							<option value="no">No</option>
-							<option value="after">Mostrar despues de votar</option>
-							<option value="app">Mostrar resultados en el sitio</option>
-							</select>
-						</td>
-						<td>
-							<label for="number_votes" class="title_option">votar mas de una vez</label><br />
-							<select id="number_votes" name="number_votes">
-							<option value="si">Si</option>
-							<option value="no">No</option>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label for="mostrar_resultados" class="title_option">opciones ¿horizontal o vertical?</label><br />
-							<select id="landscape" name="landscape">
-							<option value="h" selected="selected">Horizontal</option>
-							<option value="v" >vertical</option>
-							</select>
-						</td>
-						<td>
-							<label for="dateclose" class="title_option">Fecha de cierre</label><br />
-							<input type="checkbox" id="filter_dateclose" value="yes" name="filter_dateclose" />
-							<div class="hidden_dateclose">
-								<input type="text" id="dateclose"  name="dateclose" />
-							</div>
-						</td>
-					</tr>
-				</table>
-
-		</td>
-		
-		<td>
-			<h3>Preview</h3>
+	<!-- preview -->
 			<div id="preview">
 				<div id="content_etiquetas"></div>
 				<div id="preview_question">¿Escriba aqui la pregunta?</div>
@@ -670,10 +437,303 @@
 				<a onclick="toogle_subblocks();" id="info_state_subblock" >resultados</a><a id="name_app" href="/">&copy;Powered&nbsp;by&nbsp;crispander</a>
 			</div>
 			
-		</td>
+	<hr />		
+	<!-- menu -->
+	<div id="tabs">
+		  <ul>
+			<li><a href="#tabs-1">Basico</a></li>
+			<li><a href="#tabs-6">General</a></li>
+			<li><a href="#tabs-7">Bloque opciones</a></li>
+			<li><a href="#tabs-4">Letra</a></li>
+			<li><a href="#tabs-2">Borde</a></li>
+			<li><a href="#tabs-5">Otros</a></li>
+		  </ul>
 	
-	</tr>
-	</table>
+		<div id="tabs-1">
+			<!-- formulario inicio -->
+		    <form id="formstdgenerator" onsubmit="return upload_configuration()">
+		
+			<table width="100%" cellspacing="0" style="margin:none">
+				<tr >
+				<td width="60%">
+					<!-- Pregunta -->
+					<label class="title_option">Pregunta: </label><br />
+					
+					<input type="text" name="question" id="question"><br />
+					 <!-- opciones -->
+				</td>
+				<td width="60%" rowspan="3">
+					<table width="90%">
+						<tr>
+							<td rowspan="3">
+								<label class="title_option">Opciones </label>
+								<textarea rows="8" cols="60" name="options" id="mytextarea"></textarea><br />
+								<small>Esta es la forma rapida de añadir opciones despues de escribir una solo oprima el boton ENTER para iniciar otra.</small>
+							</td>
+							<td>
+								<a id="create-image">Imagen</a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<a id="create-br">salto de linea</a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<a id="create-b"><b style="font-size:0.5em;">N</b></a>
+							</td>
+						</tr>
+					</table>
+				</td>
+				</tr>
+				
+				<tr >
+					<td width="40%">
+						<label class="title_option">Tipo: </label><br />
+						<select id="type_poll" name="type_poll">
+						<option value="radio">Mulitple con unica respuesta</option>
+						<option value="checkbox">Mulitple con multiple respuesta</option>
+						<!--<option value="textarea">Libre</option>-->
+						</select>
+					</td>
+				</tr>
+				
+				<tr>
+					<td width="40%">
+						<label class="title_option">Etiquetas: </label>&nbsp;
+						<input type="text" id="etiquetas" name="etiquetas" /><br />
+						<small>Escriba las etiquetas separadas por coma ejm. carros, deportes, maquillaje</small>
+					</td>
+				</tr>
+		    </table>
+		</div>
+		
+		<div id="tabs-2">
+		<table width="90%" cellspacing="30">
+			<tr>
+				<td>
+						<label for="visible_border" class="title_option">Borde visible</label><br />
+						<select id="visible_border" name="borde_visible">
+						<option value="si">Si</option>
+						<option value="no">No</option>
+						</select>
+				</td>
+				<td>
+					<div   id="borde" title="borde"></div>
+					<input type="hidden" id="borde_i_hidden" name="borde" />
+					<label class="title_option">Color Borde</label>
+				</td>
+				<td>
+				<!-- grosor de el borde -->
+					<p>
+					  <label for="border-width-input" class="title_option">Ancho del borde:</label>
+					  <input type="text" name="border_width" id="border-width-input" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+					</p>
+					<div id="conf-borde"></div>
+				</td>
+				<td>
+				<!-- border readius -->	
+						<p>
+						  <label for="border-radius-input" class="title_option">Esquinas:</label>
+						  <input type="text" name="border_radius" id="border-radius-input" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+						</p>
+						<div id="conf-borde-radius"></div> 
+				</td>
+			</tr>
+		</table>
+		</div>	
+		
+		<div id="tabs-4">
+					
+			<table width="100%">
+				<tr>
+					<td>
+						<label for="font_size_title" class="title_option">Tamaño letra titulo</label><br />
+						<input type="text" name="font_size_title" value="19" id="font_size_title" />
+					</td>
+					<td>
+						<label for="font_size_block" class="title_option">Tamaño letra bloque</label><br />
+						<input type="text" name="font_size_block" value="12" id="font_size_block" />
+					</td>
+					<td>
+						<label for="type_font" class="title_option">Tipo de Letra</label><br />
+						<select id="type_font" name="font_style">
+						<option value="Times New Roman">Times New Roman</option>
+						<option value="Georgia">Georgia</option>
+						<option value="Serif">Serif</option>
+						<option value="arial">Arial</option>
+						<option value="helvetica">Helvetica</option>
+						<option value="calibri" selected>Calibri</option>
+						<option value="verdana">Verdana</option>
+						<option value="trebuchet ms">Trebuchet MS</option>
+						</select>
+					</td>
+		
+					<!-- ancho bloque de la question -->	
+					<td>
+						<p>
+						  <label for="width_blocktitle" class="title_option">Centrar titulo:</label>
+						  <input type="text" id="width_blocktitle" name="width_blocktitle" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+						</p>
+						<div id="slider_width_blocktitle"></div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+                        <div  id="font_subblock" title="letra titulo"></div>
+						<input type="hidden" id="font_subblock_i_hidden" name="font_subblock" />
+					   <label for="font_subblock" class="title_option">Color letra del titulo</label>
+					</td>
+					<td>
+						<div  id="font" title="letra bloque"></div>
+						<input type="hidden" id="font_i_hidden" name="font" />
+					    <label for="font" class="title_option">Color letra opciones</label>
+					</td>
+			<!-- height bloque de la question -->	
+					<td>
+						<p>
+						  <label for="height_blocktitle" class="title_option">Espacio pregunta y opciones:</label>
+						  <input type="text" id="height_blocktitle" name="height_blocktitle" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+						</p>
+						<div id="slider_height_blocktitle"></div>
+					</td>
+				</tr>
+			</table>
+	</div>
+
+	<div id="tabs-5">
+	    <table width="100%">
+				<tr>
+					<td>
+						<label for="mostrar_resultados" class="title_option">Mostrar resultados</label><br />
+						<select id="mostrar_resultados" name="mostrar_resultados">
+						<option value="si">Si</option>
+						<option value="no">No</option>
+						<option value="after">Mostrar despues de votar</option>
+						<option value="app">Mostrar resultados en el sitio</option>
+						</select>
+					</td>
+					<td>
+						<label for="number_votes" class="title_option">votar mas de una vez</label><br />
+						<select id="number_votes" name="number_votes">
+						<option value="si">Si</option>
+						<option value="no">No</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="dateclose" class="title_option">Fecha de cierre</label><br />
+						<input type="checkbox" id="filter_dateclose" value="yes" name="filter_dateclose" />
+						<div class="hidden_dateclose">
+							<input type="text" id="dateclose"  name="dateclose" />
+						</div>
+					</td>
+				</tr>
+		</table>
+	</div>
+	
+	<div id="tabs-6">
+
+			<table width="100%" cellspacing="30">
+				<tr>
+				<td>
+					<!-- color fondo -->
+					<div id="fondo" title="fondo"></div>
+					<input type="hidden" id="fondo_i_hidden" name="fondo" />
+					 <label class="title_option">Color Fondo:</label>
+				</td>
+				<!-- ancho -->
+				    <td >
+						<p>
+						  <label for="border-width-input" class="title_option">Ancho:</label>
+						  <input type="text" name="width" id="preview_width_input" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+						</p>
+						<div id="preview_width"></div>
+					</td>
+				<!-- alto -->		
+					<td > 			
+						<p>
+						  <label for="preview_height_input" class="title_option">Alto:</label>
+						  <input type="text" name="height" id="preview_height_input" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+						</p>
+						<div id="preview_height"></div>
+					</td>
+				
+					<!-- padding -->
+					<td>
+					<p>
+					  <label for="padding" class="title_option">padding:</label>
+					  <input type="text" id="padding" name="padding" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+					</p>
+					<div id="slider-padding"></div>
+					</td>
+					
+					<td>
+						<label for="mostrar_resultados" class="title_option">opciones ¿horizontal o vertical?</label><br />
+						<select id="landscape" name="landscape">
+						<option value="h" selected="selected">Horizontal</option>
+						<option value="v" >vertical</option>
+						</select>
+					</td>
+				</tr>
+			</table>
+	</div>
+	
+	<div id="tabs-7">
+	<table width="100%" cellspacing="30"> 
+		<tr>
+			<td>
+			<div  id="subfondo" title="subfondo"></div>
+			<input type="hidden" id="subfondo_i_hidden" name="subfondo" />
+			Color subfondo: 
+			</td>
+			
+			<td>
+			<div  id="gradient1" title="gradient 1"></div>
+			<input type="hidden" id="gradient1_i_hidden" name="gradient1" />
+			Color gradiente 1
+			</td>
+			
+			<td>
+			<div  id="gradient2" title="gradient 2"></div>
+			<input type="hidden" id="gradient2_i_hidden" name="gradient2" />
+			Color gradiente 1
+			</td>
+			
+		    <!-- width subblock -->	
+			<td>
+			<p>
+			  <label for="width_subblock" class="title_option">Ancho bloque Central:</label>
+			  <input type="text" id="width_subblock" name="width_subblock" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+			</p>
+			<div id="slider_width_subblock"></div>
+			</td>
+			
+		    <!-- padding subblock espacio entre bloques -->	
+			<td>
+				<p>
+				  <label for="padding_block_std_optionss" class="title_option">Espacio en bloques Opciones:</label>
+				  <input type="text" id="block_std_options" name="block_std_options" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+				</p>
+				<div id="slider_block_std_options"></div>
+			</td>
+					
+					
+		<!-- height subblock -->	
+			<td>
+				<p>
+				  <label for="height_subblock" class="title_option">Alto bloque central:</label>
+				  <input type="text" id="height_subblock" name="height_subblock" style="border: 0; color: #f6931f; font-weight: bold;width:60px;" />
+				</p>
+				<div id="slider_height_subblock"></div>
+			</td>
+			</tr>
+		</table>
+	</div>
+	
+	</div>
 	
 	<!-- cuadro de dialogo -->
 		<div id="dialog-form" title="ingresar Imagen">
