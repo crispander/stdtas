@@ -208,6 +208,7 @@ insertAtCaret: function(myValue){
 });
 
 $(function(){
+//dialogo para creat una imagem
     $( "#dialog-form" ).dialog({
       autoOpen: false,
       height: 600,
@@ -232,7 +233,38 @@ $(function(){
       }
     });
 
-
+	
+    $( "#dialog-form-preview" ).dialog({
+      autoOpen: false,
+      height: 600,
+      width: 700,
+      modal: true,
+      buttons: {
+        "Poner de nuevo en la ventana anterior": function() {
+             $( this ).dialog( "close" );
+		  },
+      },
+      close: function() {
+		 datos_Actuales = $("#dialog-form-preview").html();
+		 $("#dialog-form-preview").html('');
+		 $("#content_preview").html(datos_Actuales);
+		 $( "#dialog_preview" ).css("display", "inline-block");
+      },
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      },
+	  modal:false
+    });
+	
+	$(".ui-widget-overlay").attr('style','background-color: #000; opacity:1; z-index:1000;');
+	
+	
+	//boton que habre el dialogo de crear una imagen.
 	  $( "#create-image" )
 		  .button({
 		    icons: {
@@ -242,8 +274,26 @@ $(function(){
 		  })
 		  .click(function() {
 			$( "#dialog-form" ).dialog( "open" );
-		  });
+	});
 
+	
+	//boton que habre el dialogo de 'preview'
+	  $( "#dialog_preview" )
+		  .button({
+		    icons: {
+			primary: "ui-icon-newwin"
+			}
+		  })
+		  .click(function() {
+			 datos_Actuales = $("#content_preview").html();
+			 $("#content_preview").html('');
+			 $("#dialog-form-preview").html(datos_Actuales);
+			 //ocultar boton
+			 $( "#dialog_preview" ).css("display", "none");
+			$( "#dialog-form-preview" ).dialog( "open" );
+			
+	});
+		  
 	  $( "#create-br" )
 		  .button({
 		    icons: {
