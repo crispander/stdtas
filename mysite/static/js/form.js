@@ -81,12 +81,14 @@ function upload_configuration(){
 
 function set_font_block(){
 	val = $("#font_size_block").val();
+	$("input[name='font_size_block']").val(val);
 	$("#preview #subblock").css("font-size", val + "px");
 	$("#preview #subblock_results").css("font-size", val + "px");
 }
 
 function set_font_title(){
 	val = $("#font_size_title").val();
+	$("input[name='font_size_title']").val(val);
 	$("#preview #preview_question").css("font-size", val + "px");
 }
 
