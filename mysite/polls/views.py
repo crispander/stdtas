@@ -249,11 +249,15 @@ def create_poll(request):
             fecha = datetime.strptime(request.POST['dateclose'], "%m/%d/%Y %H:%M")
         else:
             fecha = None
+    try:
+        auth = request.POST['requiredAuthentication']
+    except KeyError:
+        auth= "si"
     
     if request.user.is_authenticated():
-        obj = Poll.objects.create(tipo = type, question=question,user=request.user, pub_date=datetime.now(), width=width, height=height, border_visible=borde_visible, border_width=border_width, border_color=borde, background=fondo, border_radius=border_radius, sub_background=subfondo, font_family=font_style, font_color=letra, color_title=letra_subblock, padding=padding, width_subblock=width_subblock, height_subblock=height_subblock, width_blocktitle=width_blocktitle, height_blocktitle=height_blocktitle, gradient1=gradient1, gradient2=gradient2, show_results=mostrar_resultados, size_title=font_size_title, size_block=font_size_block, padding_std_options=padding_std_options, etiquetas=etiquetas, landscape=landscape, fechaCierre=fecha)
+        obj = Poll.objects.create(tipo = type, question=question,user=request.user, pub_date=datetime.now(), width=width, height=height, border_visible=borde_visible, border_width=border_width, border_color=borde, background=fondo, border_radius=border_radius, sub_background=subfondo, font_family=font_style, font_color=letra, color_title=letra_subblock, padding=padding, width_subblock=width_subblock, height_subblock=height_subblock, width_blocktitle=width_blocktitle, height_blocktitle=height_blocktitle, gradient1=gradient1, gradient2=gradient2, show_results=mostrar_resultados, size_title=font_size_title, size_block=font_size_block, padding_std_options=padding_std_options, etiquetas=etiquetas, landscape=landscape, fechaCierre=fecha, requiredAuthentication=auth)
     else:
-        obj = Poll.objects.create(tipo = type, question=question, pub_date=datetime.now(), width=width, height=height, border_visible=borde_visible, border_width=border_width, border_color=borde, background=fondo, border_radius=border_radius, sub_background=subfondo, font_family=font_style, font_color=letra, color_title=letra_subblock, padding=padding, width_subblock=width_subblock, height_subblock=height_subblock, width_blocktitle=width_blocktitle, height_blocktitle=height_blocktitle, gradient1=gradient1, gradient2=gradient2, show_results=mostrar_resultados, size_title=font_size_title, size_block=font_size_block, padding_std_options=padding_std_options, etiquetas=etiquetas, landscape=landscape, fechaCierre=fecha)
+        obj = Poll.objects.create(tipo = type, question=question, pub_date=datetime.now(), width=width, height=height, border_visible=borde_visible, border_width=border_width, border_color=borde, background=fondo, border_radius=border_radius, sub_background=subfondo, font_family=font_style, font_color=letra, color_title=letra_subblock, padding=padding, width_subblock=width_subblock, height_subblock=height_subblock, width_blocktitle=width_blocktitle, height_blocktitle=height_blocktitle, gradient1=gradient1, gradient2=gradient2, show_results=mostrar_resultados, size_title=font_size_title, size_block=font_size_block, padding_std_options=padding_std_options, etiquetas=etiquetas, landscape=landscape, fechaCierre=fecha, requiredAuthentication=auth)
     
     opciones = options.split("\n")
     for i in opciones:
@@ -289,7 +293,7 @@ def render_poll(request, pk):
     c23 = landscape
     c24 = border_visible
     c25 = close (si tiene fechs de cierre o no)
-    c26 = fecha (fecha para el cieerre)
+    c26 = fecha (fecha para el cierre)
     """
     obj = Poll.objects.get(pk=pk)
     choices = obj.get_choices()

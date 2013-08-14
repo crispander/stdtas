@@ -165,6 +165,7 @@
 				$(".hidden_dateclose").css("display","block");
 			}else{
 				$(".hidden_dateclose").css("display","none");
+				
 			}
 		});
 		
@@ -609,8 +610,16 @@
 						<label for="dateclose" class="title_option">Fecha de cierre</label><br />
 						<input type="checkbox" id="filter_dateclose" value="yes" name="filter_dateclose" />
 						<div class="hidden_dateclose">
-							<input type="text" id="dateclose"  name="dateclose" />
+							<input type="text" id="dateclose"  name="dateclose" value="" /><br />
+							<span>Haz click para en el cuadro de texto para mostrar el calendario</span>
 						</div>
+					</td>
+					<td>
+						<label for="number_votes" class="title_option">Requiere autentificarse para votar</label><br />
+						<select id="requiredAuthentication" name="requiredAuthentication">
+						<option value="si">Si</option>
+						<option value="no">No</option>
+						</select>
 					</td>
 				</tr>
 		</table>

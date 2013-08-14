@@ -45,6 +45,7 @@ class Poll(models.Model):
     etiquetas = models.CharField(max_length=200, null=True, blank=True)
     landscape = models.CharField(max_length=200, null=True, blank=True)
     fechaCierre = models.DateTimeField(null=True, blank=True)
+    requiredAuthentication = models.CharField(max_length=10, null=True, blank=True)
 
     def __unicode__(self):
         return self.question

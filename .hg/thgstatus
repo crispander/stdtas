@@ -2,7 +2,7 @@ m
 m.git
 m.git/logs
 m.git/logs/refs/heads
-r.git/logs/refs/remotes/heroku
+m.git/logs/refs/remotes/heroku
 r.git/objects/00
 r.git/objects/01
 r.git/objects/02
@@ -260,11 +260,11 @@ r.git/objects/fd
 r.git/objects/fe
 r.git/objects/ff
 m.git/refs/heads
-r.git/refs/remotes/heroku
+m.git/refs/remotes/heroku
 massets/css
 massets/images
 massets/js
-mdb
+rdb
 mimages
 mmysite
 rmysite/polls
