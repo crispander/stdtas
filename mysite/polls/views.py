@@ -20,7 +20,14 @@ class ViewLogin(TemplateView):
 	
 class ViewOneall(TemplateView):
     template_name = 'polls/oneall.html'
-    
+    def get_context_data(self, **kwargs):
+        context = super(ViewOneall, self).get_context_data(**kwargs)
+
+        context["useroneall"] = vars(self.request.user.identity)
+
+        return context
+	
+	
 class ViewIndex(ListView):
     template_name = 'polls/index.html'
     queryset = Poll.objects.order_by('-pub_date')
@@ -300,6 +307,7 @@ def render_poll(request, pk):
     c24 = border_visible
     c25 = close (si tiene fechs de cierre o no)
     c26 = fecha (fecha para el cierre)
+	c27 = requiere authentificacion
     """
     obj = Poll.objects.get(pk=pk)
     choices = obj.get_choices()
@@ -356,7 +364,7 @@ def render_poll(request, pk):
             html += radio.format(c1=str(i.id), c2=i.name.encode("UTF-8").replace("\r", "").replace('"', "&quot;"), c3=str(votos), c4=str(obj.landscape) ,c5=str(size_landscape))
         else:
             html = "html += 'Encuesta cerrada &nbsp;&nbsp;&nbsp;&nbsp; <a onclick=" + '"toogle_subblocks()" style="color:white;background:#000;cursor:pointer"' + "> Ver Resultados </a>';"
-    send = fd.format(corchete_c="}",corchete_o="{", nombre=obj.question, choices=html, choices_results=htmlR,c1=obj.background, c2=obj.border_radius, c3=str(str(obj.border_width) + " solid " + str(obj.border_color)), c4=obj.width, c5=obj.height, c6=obj.sub_background, c7=obj.font_family, c8=obj.font_color, c9=obj.padding, c10=obj.width_subblock, c11=obj.height_subblock, c12=obj.width_blocktitle, c13=obj.height_blocktitle, c14=obj.color_title, c15=obj.gradient1, c16=obj.gradient2, c17=obj.id, c18=obj.show_results, c19=obj.size_title, c20=obj.size_block, c21=obj.padding_std_options, c22=obj.etiquetas, c23=obj.landscape, c24=obj.border_visible, c25 = close, c26=fecha)
+    send = fd.format(corchete_c="}",corchete_o="{", nombre=obj.question, choices=html, choices_results=htmlR,c1=obj.background, c2=obj.border_radius, c3=str(str(obj.border_width) + " solid " + str(obj.border_color)), c4=obj.width, c5=obj.height, c6=obj.sub_background, c7=obj.font_family, c8=obj.font_color, c9=obj.padding, c10=obj.width_subblock, c11=obj.height_subblock, c12=obj.width_blocktitle, c13=obj.height_blocktitle, c14=obj.color_title, c15=obj.gradient1, c16=obj.gradient2, c17=obj.id, c18=obj.show_results, c19=obj.size_title, c20=obj.size_block, c21=obj.padding_std_options, c22=obj.etiquetas, c23=obj.landscape, c24=obj.border_visible, c25 = close, c26=fecha, c27=obj.requiredAuthentication)
 
     return HttpResponse(send, "text/javascript")
     

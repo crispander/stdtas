@@ -165,7 +165,7 @@ ONEALL_CACHE_FIELDS = {
 # User identity is always cached on first authentication. However, if you want to spare an API call for users
 # who are already known to your Django app, you can disable the refresh of cache for the second time they
 # connect and onward.
-ONEALL_REFRESH_CACHE_ON_AUTH = True
+ONEALL_REFRESH_CACHE_ON_AUTH = False
 
 # The OneAll cache table in the DB, where cached identities are stored
 ONEALL_CACHE_TABLE = 'oneall_cache'

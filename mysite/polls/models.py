@@ -98,6 +98,7 @@ class Vote(models.Model):
     ip = models.CharField(max_length=20, blank=True, null=True)
     number_votes = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True, auto_now=True)
+    user_token = models.CharField(max_length=50, blank=True, null=True)
 
     def __unicode__(self):
         return self.choice.name

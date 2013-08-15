@@ -1,4 +1,12 @@
 var show = null;
+if('{c27}' == 'si'){corchete_o}
+	var user_token = "";
+	var access_vote = false;
+	{corchete_c}
+else{corchete_o}
+	var access_vote = true;
+{corchete_c}
+
 $(function(){corchete_o}
 			
    html = "<div id='preview'><div id='content_etiquetas'></div><div id='preview_question'>&iquest; {nombre} ?</div>";
@@ -121,21 +129,27 @@ $(function(){corchete_o}
 function send_poll(id){corchete_o}
 
 data= $("#formcrispanderstr_" + id).serialize();
-$.ajax({corchete_o}
-	url: "http://www.generadorencuestas.com/polls/{c17}/submit/",
-	data: data,
-	type: "GET",
-	success: function(){corchete_o}
-		if(show=='after'){corchete_o}
-			toogle_subblocks();
+if(access_vote){corchete_o}
+	$.ajax({corchete_o}
+		url: "http://www.generadorencuestas.com/polls/{c17}/submit/",
+		data: data,
+		type: "GET",
+		success: function(){corchete_o}
+			if(show=='after'){corchete_o}
+				toogle_subblocks();
+			{corchete_c}
+			else if(show=='app'){corchete_o}
+				document.location.href = 'http://www.generadorencuestas.com/polls/{c17}/results/';
+			{corchete_c}
+			$(".button_crispander").css("display", "none");
+			$("input").attr("disabled", "disabled");
 		{corchete_c}
-		else if(show=='app'){corchete_o}
-			document.location.href = 'http://www.generadorencuestas.com/polls/{c17}/results/';
-		{corchete_c}
-		$(".button_crispander").css("display", "none");
-		$("input").attr("disabled", "disabled");
-	{corchete_c}
-{corchete_c});
+	{corchete_c});
+{corchete_c}
+else
+{corchete_o}
+    window.open("http://localhost:8000/senderlogin", "_blank", 'width=500,height=350');
+{corchete_c}
 
 return false;
 {corchete_c}
@@ -151,5 +165,11 @@ function toogle_subblocks(){corchete_o}
 		$("#subblock_results").slideUp("slow");
 		$("#info_state_subblock").html("resultados");
 	{corchete_c}
+{corchete_c}
+
+function HandlePopupResult(result) {corchete_o}
+    console.log("result of popup is: " + result);
+	access_vote = true;
+	send_poll({c17});
 {corchete_c}
 
