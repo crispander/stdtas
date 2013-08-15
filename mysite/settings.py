@@ -126,6 +126,12 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'mysite/templates'),
 )
 
+ONEALL_SITE_NAME = 'generadorencuestas'
+ONEALL_PRIVATE_KEY = '4b109367-3625-4d2f-a976-2a865e3c29fe'
+ONEALL_PUBLIC_KEY = 'e93ef670-1664-4581-8953-1a67e7c2f4aa'
+
+AUTHENTICATION_BACKENDS = ('django_oneall.auth.OneAllAuthBackend',)
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -140,7 +146,30 @@ INSTALLED_APPS = (
     'mysite.polls',
     'tastypie',
     #'south'
+	'django_oneall'
 )
+
+# This setting lets you decide which identity data you want stored in the User model.
+# The keys stand for the fields in the User model, while the values are the expressions that will be evaluated
+# as attributes of the identity object as received from OneAll. There can be more than one identity expression,
+# in case different authentication providers have different data structures.
+# Note that the usernames will default to the user_token, which is a UUID. You can override it with any other
+# unique identity information
+ONEALL_CACHE_FIELDS = {
+    'username': ('user_token',),
+    'email': ('emails[0].value',),
+    'first_name': ('name.givenName',),
+    'last_name': ('name.familyName',),
+}
+
+# User identity is always cached on first authentication. However, if you want to spare an API call for users
+# who are already known to your Django app, you can disable the refresh of cache for the second time they
+# connect and onward.
+ONEALL_REFRESH_CACHE_ON_AUTH = True
+
+# The OneAll cache table in the DB, where cached identities are stored
+ONEALL_CACHE_TABLE = 'oneall_cache'
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

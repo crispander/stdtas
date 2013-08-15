@@ -14,6 +14,8 @@ v1_api.register(EntryResource3())
 
 urlpatterns = patterns('',
     url(r'^$', ViewHome.as_view()),
+    url(r'^senderlogin/$', ViewLogin.as_view()),
+    url(r'^accounts/profile/$', ViewOneall.as_view()),
     url(r'^create/$', ViewForm.as_view()),
     url(r'^polls/$', ViewIndex.as_view()),
     url(r'^polls/(?P<pk>\d+)/$', ViewDetail.as_view()),
@@ -26,6 +28,8 @@ urlpatterns = patterns('',
 	url(r'^sobreapp/$', ViewSobreApp.as_view()),
     #api
     url(r'^api/', include(v1_api.urls)),
+	#oneall
+    url(r'^oneall/', include('django_oneall.urls')),
     
     #admin
     url(r'^admin/', include(admin.site.urls)),

@@ -14,6 +14,12 @@ import simplejson
 
 class ViewHome(TemplateView):
     template_name = 'polls/home.html'
+	
+class ViewLogin(TemplateView):
+    template_name = 'polls/login.html'
+	
+class ViewOneall(TemplateView):
+    template_name = 'polls/oneall.html'
     
 class ViewIndex(ListView):
     template_name = 'polls/index.html'
@@ -326,9 +332,9 @@ def render_poll(request, pk):
     f.close()
     
     if close == "no":
-		radio = open(path_file2, "rb")
-		radio = radio.read()
-		radio = str(radio)
+        radio = open(path_file2, "rb")
+        radio = radio.read()
+        radio = str(radio)
     else:
        radio = "encuesta cerrada"
     
@@ -347,10 +353,10 @@ def render_poll(request, pk):
             porcentaje = 0
         htmlR += radio2.format(c1=str(i.id), c2=i.name.encode("UTF-8").replace("\r", "").replace('"', "&quot;"), c3=str(votos), c4=str(obj.landscape) ,c5=str(size_landscape), c6=str(porcentaje))
         if close == "no":
-		    html += radio.format(c1=str(i.id), c2=i.name.encode("UTF-8").replace("\r", "").replace('"', "&quot;"), c3=str(votos), c4=str(obj.landscape) ,c5=str(size_landscape))
+            html += radio.format(c1=str(i.id), c2=i.name.encode("UTF-8").replace("\r", "").replace('"', "&quot;"), c3=str(votos), c4=str(obj.landscape) ,c5=str(size_landscape))
         else:
             html = "html += 'Encuesta cerrada &nbsp;&nbsp;&nbsp;&nbsp; <a onclick=" + '"toogle_subblocks()" style="color:white;background:#000;cursor:pointer"' + "> Ver Resultados </a>';"
-	send = fd.format(corchete_c="}",corchete_o="{", nombre=obj.question, choices=html, choices_results=htmlR,c1=obj.background, c2=obj.border_radius, c3=str(str(obj.border_width) + " solid " + str(obj.border_color)), c4=obj.width, c5=obj.height, c6=obj.sub_background, c7=obj.font_family, c8=obj.font_color, c9=obj.padding, c10=obj.width_subblock, c11=obj.height_subblock, c12=obj.width_blocktitle, c13=obj.height_blocktitle, c14=obj.color_title, c15=obj.gradient1, c16=obj.gradient2, c17=obj.id, c18=obj.show_results, c19=obj.size_title, c20=obj.size_block, c21=obj.padding_std_options, c22=obj.etiquetas, c23=obj.landscape, c24=obj.border_visible, c25 = close, c26=fecha)
+    send = fd.format(corchete_c="}",corchete_o="{", nombre=obj.question, choices=html, choices_results=htmlR,c1=obj.background, c2=obj.border_radius, c3=str(str(obj.border_width) + " solid " + str(obj.border_color)), c4=obj.width, c5=obj.height, c6=obj.sub_background, c7=obj.font_family, c8=obj.font_color, c9=obj.padding, c10=obj.width_subblock, c11=obj.height_subblock, c12=obj.width_blocktitle, c13=obj.height_blocktitle, c14=obj.color_title, c15=obj.gradient1, c16=obj.gradient2, c17=obj.id, c18=obj.show_results, c19=obj.size_title, c20=obj.size_block, c21=obj.padding_std_options, c22=obj.etiquetas, c23=obj.landscape, c24=obj.border_visible, c25 = close, c26=fecha)
 
     return HttpResponse(send, "text/javascript")
     
@@ -363,3 +369,4 @@ def submit_Contact(request):
     value = Contact.objects.create(name=name, mail=mail,text=text)
     
     return HttpResponse("gracias", "text/plain")
+    
