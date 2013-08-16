@@ -14,10 +14,10 @@ import simplejson
 
 class ViewHome(TemplateView):
     template_name = 'polls/home.html'
-	
+    
 class ViewLogin(TemplateView):
     template_name = 'polls/login.html'
-	
+    
 class ViewOneall(TemplateView):
     template_name = 'polls/oneall.html'
     def get_context_data(self, **kwargs):
@@ -26,8 +26,8 @@ class ViewOneall(TemplateView):
         context["useroneall"] = vars(self.request.user.identity)
 
         return context
-	
-	
+    
+    
 class ViewIndex(ListView):
     template_name = 'polls/index.html'
     queryset = Poll.objects.order_by('-pub_date')
@@ -104,18 +104,48 @@ def submit(request, poll_id):
         try:
             selected_choice = p.choice_set.get(pk=request.GET['choice'])
         except (KeyError, Choice.DoesNotExist):
-            # Redisplay the poll voting form.
-            return render_to_response('polls/detail.html', {
-                'poll': p,
-                'error_message': "You didn't select a choice.",
-            }, context_instance=RequestContext(request))
+            #no ha seleccionado una opcioon
+            response = HttpResponse(simplejson.dumps({"operacion": False, "key2": "You didn't select a choice."}))  
+            response["Access-Control-Allow-Origin"] = "*"  
+            response["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"  
+            response["Access-Control-Max-Age"] = "1000"  
+            response["Access-Control-Allow-Headers"] = "*"
+            return response
         else:
             try:
                 anterior = Vote.objects.filter(choice=selected_choice)[0].number_votes
             except IndexError:
                 anterior = 0
-            vote = Vote.objects.create(choice=selected_choice, number_votes=anterior + 1)
-            response = HttpResponse(simplejson.dumps({"key": "value", "key2": "value"}))  
+            if(p.requiredAuthentication == "si"):
+                try:
+                    user_token = request.GET['user_token']
+                except IndexError:
+                    response = HttpResponse(simplejson.dumps({"operacion": False, "resultado": "error en la solicitud"}))
+                else:
+                    if request.user.is_authenticated and request.user.identity.identity_token == user_token:
+                        if p.number_votes == "si":
+                            #consultar si existen registros donde hayan votado en esa misma encuesta.
+                            try:
+                                k = Vote.objects.filter(user_token=user_token, choice__poll = p)[0]
+                            except IndexError:
+                                allreadyvote = False
+                            else:
+                                allreadyvote = True
+                                
+                            if not allreadyvote:
+                                vote = Vote.objects.create(choice=selected_choice, number_votes=anterior + 1, user_token=user_token)
+                                response = HttpResponse(simplejson.dumps({"operacion": True, "key2": "value"}))
+                            else:
+                                response = HttpResponse(simplejson.dumps({"operacion": False, "key2": "Usted ya voto en esta encuesta."}))
+                            
+                        else:
+                            vote = Vote.objects.create(choice=selected_choice, number_votes=anterior + 1, user_token=user_token)
+                            response = HttpResponse(simplejson.dumps({"operacion": True, "key2": "value"}))
+                    else:
+                        response = HttpResponse(simplejson.dumps({"operacion": False, "key2": "tiene que loguearse primero."}))
+            else:
+                vote = Vote.objects.create(choice=selected_choice, number_votes=anterior + 1)
+                response = HttpResponse(simplejson.dumps({"operacion": True, "key2": "value"}))  
             response["Access-Control-Allow-Origin"] = "*"  
             response["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS"  
             response["Access-Control-Max-Age"] = "1000"  
@@ -307,7 +337,7 @@ def render_poll(request, pk):
     c24 = border_visible
     c25 = close (si tiene fechs de cierre o no)
     c26 = fecha (fecha para el cierre)
-	c27 = requiere authentificacion
+    c27 = requiere authentificacion
     """
     obj = Poll.objects.get(pk=pk)
     choices = obj.get_choices()

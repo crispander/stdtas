@@ -11,6 +11,7 @@ $(function(){corchete_o}
 			
    html = "<div id='preview'><div id='content_etiquetas'></div><div id='preview_question'>&iquest; {nombre} ?</div>";
    html += '<form action="http://www.generadoencuestas.com/api/v1/choice/" method="post" id="formcrispanderstr_{c17}" onsubmit="return send_poll({c17})">';
+   html += "<input type='hidden' value='' name='user_token' />";
    html += "<div id='subblock'>";
    {choices}
    html += "</div><div id='subblock_results'>";
@@ -131,7 +132,7 @@ function send_poll(id){corchete_o}
 data= $("#formcrispanderstr_" + id).serialize();
 if(access_vote){corchete_o}
 	$.ajax({corchete_o}
-		url: "http://www.generadorencuestas.com/polls/{c17}/submit/",
+		url: "http://localhost:8000/polls/{c17}/submit/",
 		data: data,
 		type: "GET",
 		success: function(){corchete_o}
@@ -170,6 +171,7 @@ function toogle_subblocks(){corchete_o}
 function HandlePopupResult(result) {corchete_o}
     console.log("result of popup is: " + result);
 	access_vote = true;
+	$("input[name='user_token']").val(result);
 	send_poll({c17});
 {corchete_c}
 
